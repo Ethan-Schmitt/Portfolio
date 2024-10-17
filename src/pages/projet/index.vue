@@ -1,9 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 </script>
-<template class="bg-top deg">
 
-    <h1 class="text-2xl">Accueil</h1> 
-  
-
+<template>
+  <h1 class="text-2xl">Projets</h1>
 </template>
