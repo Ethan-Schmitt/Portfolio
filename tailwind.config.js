@@ -6,9 +6,9 @@ export default {
       "colors": {
   "Blanc": "#ffffff",
   "Noir": "#000000",
-  "top deg": "#0c132d",
-  "mid deg": " #102d4d",
-  "bot deg": " #24aae3",
+  "top-deg": "#0c132d",
+  "mid-deg": " #102d4d",
+  "bot-deg": " #24aae3",
   "left btn": " #763af5",
   "right btn": " #a604f2"
  },
