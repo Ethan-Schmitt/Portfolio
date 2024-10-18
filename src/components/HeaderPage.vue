@@ -19,19 +19,19 @@ watch(activeMenu, (newVal) => {
 </script>
 
 <template>
-  <header class="flex items-center justify-between ">
+  <header class="flex items-center justify-between p-6 sm:p-5 md:p-8 lg:p-10 xl:p-12">
     <RouterLink to="/" @click="closeMenu">
-      <img src="../components/icons/logoES.png" alt="Image" class="h-14 ml-20" />
+      <img src="../components/icons/logoES.png" alt="Image" class="h-10 sm:h-14 md:h-16 lg:h-16 xl:h-20 ml-4 " />
     </RouterLink>
     <button
-      class="relative z-10 flex h-3 w-6 flex-col justify-between lg:hidden *:block *:ease *:h-[2px] *:w-full *:transform *:rounded-full *:bg-white *:transition *:duration-300"
-      @click="activeMenu = !activeMenu"
-    >
+  class="relative z-10 flex h-3 w-7 flex-col justify-between lg:hidden *:block *:ease *:h-[4px] *:w-full *:transform *:rounded-full *:bg-white *:transition *:duration-300"
+  @click="activeMenu = !activeMenu"
+>
       <span :class="{ 'translate-y-[5px] rotate-45': activeMenu }"></span>
       <span :class="{ '-translate-y-[5px] -rotate-45': activeMenu }"></span>
     </button>
     <nav
-      class="invisible opacity-0 flex-1 px-6 py-12 flex justify-center items-center mt-20 flex-col fixed z-10 inset-0 bg-gray-500 lg:mt-0 lg:flex-row lg:static lg:bg-transparent lg:py-6 lg:visible lg:opacity-100"
+      class="invisible opacity-0 flex-1 px-6 py-12 flex justify-center items-center mt-20 flex-col fixed z-10 inset-0 bg-mid-deg  lg:mt-0 lg:flex-row lg:static lg:bg-transparent lg:py-6 lg:visible lg:opacity-100"
       :class="{ '!visible !opacity-100': activeMenu }"
     >
       <ul class="flex flex-col gap-20 lg:flex-row mr-40">

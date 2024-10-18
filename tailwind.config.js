@@ -9,8 +9,8 @@ export default {
   "top-deg": "#0c132d",
   "mid-deg": " #102d4d",
   "bot-deg": " #24aae3",
-  "left btn": " #763af5",
-  "right btn": " #a604f2"
+  "left-btn": " #763af5",
+  "right-btn": " #a604f2"
  },
  "fontSize": {
   "sm": "0.875rem",
