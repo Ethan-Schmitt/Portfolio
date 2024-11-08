@@ -1,30 +1,30 @@
-<style>
-    /* Définition de l'animation */
-    @keyframes colorChange {
-      0% {
-        fill: #838BFF;
-        stroke: #838BFF;
-      }
-      100% {
-        fill: #509A1F;
-        stroke: #509A1F;
-      }
-    }
+<style scoped>
+/* Définition de l'animation */
+@keyframes colorChange {
+  0% {
+    fill: #838BFF;
+    stroke: #838BFF;
+  }
+  100% {
+    fill: #509A1F;
+    stroke: #509A1F;
+  }
+}
 
-    /* Application de l'animation à chaque path */
-    path {
-      animation: colorChange 3s infinite alternate;
-    }
-  </style>
+/* Application de l'animation à chaque path */
+.color-changing-svg path {
+  animation: colorChange 3s infinite alternate;
+}
+</style>
 
 <template>
 <svg
-  width="133"
+  width="128"
   height="299"
-  viewBox="0 0 133 299"
+  viewBox="0 0 128 299"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class="w-[133px] h-[299px]"
+  class="w-32 h-[299px] color-changing-svg"
   preserveAspectRatio="none"
 >
   <path

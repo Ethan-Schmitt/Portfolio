@@ -38,7 +38,13 @@ export default {
   "rounded-4": "NaNrem",
   "rounded-5": "NaNrem",
   "rounded-6": "NaNrem"
- }
+ },
+ width: {
+  '60': '60px',
+},
+height: {
+  '49': '49px',
+},
 }
 },
   plugins: []

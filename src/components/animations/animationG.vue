@@ -1,21 +1,21 @@
-<style>
-    /* Animation de changement de couleur */
-    @keyframes colorChange {
-      0% {
-        fill: #838BFF;
-        stroke: #838BFF;
-      }
-      100% {
-        fill: #509A1F;
-        stroke: #509A1F;
-      }
-    }
+<style scoped>
+/* Animation de changement de couleur pour le deuxième SVG uniquement */
+@keyframes colorChange {
+  0% {
+    fill: #838BFF;
+    stroke: #838BFF;
+  }
+  100% {
+    fill: #509A1F;
+    stroke: #509A1F;
+  }
+}
 
-    /* Application de l'animation */
-    path {
-      animation: colorChange 3s infinite alternate;
-    }
-  </style>
+/* Application de l'animation uniquement pour le deuxième SVG */
+.color-changing-svg path {
+  animation: colorChange 3s infinite alternate;
+}
+</style>
 <template>
 <svg
   width="128"
@@ -23,7 +23,7 @@
   viewBox="0 0 128 299"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class="w-32 h-[299px] "
+  class="w-32 h-[299px] color-changing-svg"
   preserveAspectRatio="none"
 >
   <path
