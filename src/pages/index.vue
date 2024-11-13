@@ -1,9 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import Headers from '@/components/HeaderPage.vue';
-import triforce from '@/components/animations/triforce.vue';
 import animationD from '@/components/animations/animationD.vue';
 import animationG from '@/components/animations/animationG.vue';
+import triforce from '@/components/animations/triforces.vue'; 
+
 
 </script>
 
@@ -22,7 +23,7 @@ import animationG from '@/components/animations/animationG.vue';
     <h3 class="flex justify-center items-center text-white font-titre text-5xl">A propos</h3>
     <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-52 p-8 md:p-12">
       <p class="text-white text-lg font-text text-center md:text-left max-w-3xl">
-        Bienvenue ! Je m’appelle Ethan, j’ai 19 ans et je suis étudiant en deuxième année de BUT Métiers du Multimédia et de l’Internet (MMI), avec une spécialisation en développement web. Passionné par les nouvelles technologies, les jeux vidéo et l’automobile, je suis constamment motivé par de nouveaux défis. Curieux et polyvalent, j’aime explorer et expérimenter avec tout ce qui touche à la technologie, qu’il s’agisse de PC, de tablettes, de téléphones ou de consoles.
+        Bienvenue ! Je m’appelle Ethan, j’ai 20 ans et je suis étudiant en deuxième année de BUT Métiers du Multimédia et de l’Internet (MMI), avec une spécialisation en développement web. Passionné par les nouvelles technologies, les jeux vidéo et l’automobile, je suis constamment motivé par de nouveaux défis. Curieux et polyvalent, j’aime explorer et expérimenter avec tout ce qui touche à la technologie, qu’il s’agisse de PC, de tablettes, de téléphones ou de consoles.
         <br><br>
         <em>Pour découvrir davantage sur mon parcours et mes projets, je vous invite à explorer mon site !</em>
       </p>

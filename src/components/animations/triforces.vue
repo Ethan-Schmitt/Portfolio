@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <svg
       width="87"
@@ -24,11 +25,14 @@
     </svg>
   </template>
   
-  <script>
+  <script lang="ts">
   export default {
     mounted() {
       if (window.innerWidth <= 768) {
-        document.querySelector('.triforce').classList.add('animate');
+        const triforceElement = document.querySelector('.triforce');
+        if (triforceElement) {
+          triforceElement.classList.add('animate');
+        }
       }
     }
   }
