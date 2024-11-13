@@ -14,10 +14,10 @@ import triforce from '@/components/animations/triforces.vue';
     <animationD class="hidden fixed mt-36 right-0 absolute lg:block lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20" />
     <animationG class="hidden lg:block  fixed mt-96 absolute  lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20" />
     <div class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
-      <img src="../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-20">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl text-white font-titre -mb-4">Ethan Schmitt</h1>
-      <h2 class="text-6xl md:text-7xl lg:text-8xl font-titre shine-text">Web developer</h2>
-      <triforce class=" lg:w-65 lg:h-49 absolute -bottom-10 left-0  md:w-16 md:h-16 w-[45px] h-[41px] "  />
+      <img src="../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[65px] h-[61px] mt-20">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl text-white font-titre -mb-4">Ethan Schmitt</h1>
+      <h2 class="text-5xl md:text-7xl lg:text-8xl font-titre shine-text">Web developer</h2>
+      <triforce class=" lg:w-65 lg:h-49 absolute -bottom-10 left-0  md:w-16 md:h-16 w-[38px] h-[35px] "  />
     </div>
     <div class="w-2/3 h-1 bg-white  justify-center mx-auto"></div>
     <h3 class="flex justify-center items-center text-white font-titre text-5xl">A propos</h3>
