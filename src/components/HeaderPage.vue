@@ -21,7 +21,7 @@ watch(activeMenu, (newVal) => {
 <template>
   <header class="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6 sm:p-5 md:p-8 lg:p-10 xl:p-12 bg-transparent fixed w-full">
     <RouterLink to="/" @click="closeMenu">
-      <img src="../components/icons/logoES.png" alt="Image" class="h-10 sm:h-14 md:h-16 lg:h-16 xl:h-20 ml-4 " />
+      <img src="../components/icons/logoES.png" alt="Image" class="h-10 sm:h-14 md:h-16 lg:h-16 xl:h-20 ml-0 lg:ml-8" />
     </RouterLink>
     <button
   class="relative z-10 flex h-3 w-7 flex-col justify-between lg:hidden *:block *:ease *:h-[4px] *:w-full *:transform *:rounded-full *:bg-white *:transition *:duration-300"
