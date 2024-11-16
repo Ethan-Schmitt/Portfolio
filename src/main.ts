@@ -1,4 +1,5 @@
 import './assets/css/styles.css'
+import './assets/css/fonts/Hylia/stylesheet.css';
 
 import { createApp } from 'vue'
 import App from '../src/App.vue'
