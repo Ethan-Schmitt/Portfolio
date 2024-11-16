@@ -4,7 +4,7 @@ import Headers from '@/components/HeaderPage.vue';
 import animationD from '@/components/animations/animationD.vue';
 import animationG from '@/components/animations/animationG.vue';
 import triforce from '@/components/animations/triforces.vue'; 
-
+import footers from '@/components/footer.vue';
 
 </script>
 
@@ -30,6 +30,7 @@ import triforce from '@/components/animations/triforces.vue';
       <img src="../components/icons/pp.png" alt="Photo de profil" class="w-[130px] h-[130px] md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-full object-cover shadow-lg">
     </div>
     <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Découvrez mes projet</h4>
+<footers />
   </div>
 </template>
 
