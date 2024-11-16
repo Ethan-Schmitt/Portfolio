@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <svg
-      width="87"
-      height="76"
-      viewBox="0 0 87 76"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-[87px] h-[76px] relative triforce"
-      preserveAspectRatio="none"
-    >
+  <svg
+  class="relative triforce w-[38px] h-[35px] md:w-16 md:h-16 lg:w-65 lg:h-49"
+  width="87"
+  height="76"
+  viewBox="0 0 87 76"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+>
       <g clip-path="url(#clip0_47_86)">
         <path class="triforce-path" d="M22.2869 37.3636L43.421 0.264648L64.5511 37.3636H22.2869Z" fill="#F9B233"></path>
         <path class="triforce-path" d="M0.694031 75.8521L21.8281 38.7531L42.9582 75.8521H0.694031Z" fill="#F9B233"></path>
@@ -91,18 +91,11 @@
     fill: #ffd700;
     stroke: #F9B233;
   }
-  35% {
+  50% {
     fill: #da2121;
     stroke: #7C1313;
   }
-  45% {
-    fill: #da2121;
-    stroke: #7C1313;
-  }
-  55% {
-    fill: #da2121;
-    stroke: #7C1313;
-  }
+
   100% {
     fill: #ffd700;
     stroke: #F9B233;

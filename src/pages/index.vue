@@ -17,7 +17,7 @@ import triforce from '@/components/animations/triforces.vue';
       <img src="../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[65px] h-[61px] mt-20">
       <h1 class="text-4xl md:text-6xl lg:text-7xl text-white font-titre -mb-4">Ethan Schmitt</h1>
       <h2 class="text-5xl md:text-7xl lg:text-8xl font-titre shine-text">Web developer</h2>
-      <triforce class=" lg:w-65 lg:h-49 absolute -bottom-10 left-0  md:w-16 md:h-16 w-[38px] h-[35px] "  />
+      <triforce class=" w-[48px] h-[45px] md:w-16 md:h-16 lg:w-65 lg:h-49 absolute -bottom-10 left-0  "  />
     </div>
     <div class="w-2/3 h-1 bg-white  justify-center mx-auto"></div>
     <h3 class="flex justify-center items-center text-white font-titre text-5xl">A propos</h3>
