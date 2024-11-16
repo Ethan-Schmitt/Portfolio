@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 .animated-background {
     background-size: 400%;
 
