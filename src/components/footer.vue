@@ -14,19 +14,19 @@
         <div class="flex space-x-7">
   <!-- LinkedIn -->
   <a href="https://www.linkedin.com/in/ethan-schmitt-a0ab1b299/" target="_blank" rel="noopener noreferrer" 
-     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-110">
+     class="inline-flex items-center justify-center  transition-transform transform hover:scale-110">
     <linkedIn class="h-12 w-12" />
   </a>
   
   <!-- GitHub -->
   <a href="https://github.com/Ethan-Schmitt" target="_blank" rel="noopener noreferrer" 
-     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-gray-700 transition-transform transform hover:scale-110">
+     class="inline-flex items-center justify-center   transition-transform transform hover:scale-110">
     <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-16 w-16 ">
   </a>
   
   <!-- Behance -->
   <a href="https://www.behance.net/ethanschmitt5/projects" target="_blank" rel="noopener noreferrer" 
-     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-blue-600 transition-transform transform hover:scale-110">
+     class="inline-flex items-center justify-center  transition-transform transform hover:scale-110">
     <behance class="h-12 w-12"/>
   </a>
 </div>
