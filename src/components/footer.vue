@@ -2,34 +2,42 @@
 <template>
     <footer class="text-white py-6">
         <div class="container mx-auto flex flex-col items-center space-y-6">
-        <div class="w-full h-1 bg-white justify-center mx-auto mb-10"></div>
-  
-        <!-- Icons -->
-        <div class="flex space-x-6">
-          <a href="https://www.linkedin.com/in/ton-profile" target="_blank" rel="noopener noreferrer">
-            <linkedIn class="h-12 w-12" />
-          </a>
-          <a href="https://github.com/ton-profile" target="_blank" rel="noopener noreferrer ">
-            <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-16 w-16 ">
-          </a>
-          <a href="https://www.behance.net/" target="_blank" rel="noopener noreferrer">
-            <behance class="h-12 w-12"/>
-          </a>
-        </div>
         
-        <div class="relative flex items-center justify-start w-full">
-          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-20 w-auto mx-16">
-          <div class="absolute rotate-90">
-            <animationG />
+          <div class="w-full h-1 bg-white justify-center mx-auto mb-10"></div>
+            <div class="relative flex items-center justify-start w-full md:absolute ">
+          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-14 w-auto md:mx-16 mx-7 md:mt-12 -mt-8 mb-8 md:h-20 md:w-auto ">
+          <div class="absolute rotate-90 mt-36 ml-20">
+            <animationG2  />
         </div>
         </div>
+        <!-- Icons -->
+        <div class="flex space-x-7">
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/ethan-schmitt-a0ab1b299/" target="_blank" rel="noopener noreferrer" 
+     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-110">
+    <linkedIn class="h-12 w-12" />
+  </a>
   
-        <div class="w-1/4 h-1 bg-white justify-center mx-auto mb-10"></div>
+  <!-- GitHub -->
+  <a href="https://github.com/Ethan-Schmitt" target="_blank" rel="noopener noreferrer" 
+     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-gray-700 transition-transform transform hover:scale-110">
+    <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-16 w-16 ">
+  </a>
+  
+  <!-- Behance -->
+  <a href="https://www.behance.net/ethanschmitt5/projects" target="_blank" rel="noopener noreferrer" 
+     class="inline-flex items-center justify-center rounded-full focus:ring-2 focus:ring-blue-600 transition-transform transform hover:scale-110">
+    <behance class="h-12 w-12"/>
+  </a>
+</div>
+
+        
+        <div class="md:w-1/4 w-1/2 h-1 bg-white justify-center mx- mb-10"></div>
         <div class="text-center">
           <a
-            href="/path/to/ton-cv.pdf"
+            href="/src/components/cv/CV-Ethan-Schmitt.pdf"
             download
-            class="text-white underline hover:text-gray-300"
+            class="text-white underline hover:text-or"
           >
             Télécharger mon CV
           </a>
@@ -44,7 +52,7 @@
   </template>
   
   <script setup lang="ts">
-  import animationG from "@/components/animations/animationG.vue";
+  import animationG2 from "@/components/animations/animationG2.vue";
   import linkedIn from "@/components/icons/linkedIn.vue";
   import behance from "@/components/icons/behance.vue";
   </script>
