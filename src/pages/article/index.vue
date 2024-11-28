@@ -11,7 +11,7 @@ interface Article {
   image?: string;
 }
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://portfolio-ethan.pockethost.io/');
 const articles = ref<Article[]>([]); // Déclaration avec type
 const selectedCategory = ref('');
 
