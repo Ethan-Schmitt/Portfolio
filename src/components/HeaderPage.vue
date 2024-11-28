@@ -36,7 +36,7 @@ watch(activeMenu, (newVal) => {
     >
       <ul class="flex flex-col gap-20 lg:flex-row mr-40">
         <li class="mb-4 lg:mb-0 lg:mr-4">
-          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/" @click="closeMenu">Projets</RouterLink>
+          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/article" @click="closeMenu">Projets</RouterLink>
         </li>
         <li class="mb-4 lg:mb-0 lg:mr-4">
           <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/" @click="closeMenu">A propos</RouterLink>

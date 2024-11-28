@@ -5,6 +5,9 @@ import animationD from '@/components/animations/animationD.vue';
 import animationG from '@/components/animations/animationG.vue';
 import triforce from '@/components/animations/triforces.vue'; 
 import footers from '@/components/footer.vue';
+import carroussel from '@/components/icons/carroussel/carroussel.vue';
+import PocketBase from 'pocketbase';
+import { ref, onMounted } from 'vue';
 
 </script>
 
@@ -31,6 +34,7 @@ import footers from '@/components/footer.vue';
     </div>
     <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Découvrez mes projets</h4>
     <h5 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Mes compétences</h5>
+    <carroussel />
     <footers />
   </div>
 </template>
