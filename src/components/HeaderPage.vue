@@ -19,7 +19,7 @@ watch(activeMenu, (newVal) => {
 </script>
 
 <template>
-  <header class="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6 sm:p-5 md:p-8 lg:p-10 xl:p-12 bg-transparent fixed w-full">
+  <header class="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6 sm:p-5 md:p-8 lg:p-10 xl:p-12  fixed w-full">
     <RouterLink to="/" @click="closeMenu">
       <img src="../components/icons/logoES.png" alt="Image" class="h-10 sm:h-14 md:h-16 lg:h-16 xl:h-20 ml-0 lg:ml-8" />
     </RouterLink>
@@ -36,7 +36,7 @@ watch(activeMenu, (newVal) => {
     >
       <ul class="flex flex-col gap-20 lg:flex-row mr-40">
         <li class="mb-4 lg:mb-0 lg:mr-4">
-          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/article" @click="closeMenu">Projets</RouterLink>
+          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/articles" @click="closeMenu">Projets</RouterLink>
         </li>
         <li class="mb-4 lg:mb-0 lg:mr-4">
           <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/" @click="closeMenu">A propos</RouterLink>
