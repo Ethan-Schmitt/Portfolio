@@ -10,7 +10,7 @@ import carroussel from '@/components/icons/carroussel/carroussel.vue';
 </script>
 
 <template>
-  <head><link rel="icon" href="../components/icons/logoES.png" type="image/png"></head>
+  
   <div class="relative bg-gradient-to-b from-top-deg  to-bot-deg min-h-screen">
     <Headers />
     <animationD class="hidden fixed mt-36 right-0 absolute lg:block lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20" />

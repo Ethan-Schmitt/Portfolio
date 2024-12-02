@@ -48,11 +48,27 @@ onMounted(async () => {
 
     <!-- Contenu principal -->
     <div class="flex flex-col items-center  min-h-screen p-4 sm:p-8">
-      <div v-if="articles" class="max-w-4xl w-full">
+      <div v-if="articles" class="max-w-7xl w-full ">
         <!-- Contenu HTML -->
         <div class="text-lg text-white font-text p-6 rounded-lg">
           <div v-html="articles.content"></div>
         </div>
+        
+        <div class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl">
+          <div v-html="articles.titre2"></div>
+        </div>
+        
+      <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto ransition-transform duration-500 transform hover:scale-105 rounded-xl " :filename="articles.image2" :record="articles" />
+      </div>
+      
+      <div class="text-lg text-white font-text p-6 rounded-lg">
+          <div v-html="articles.content2"></div>
+        </div>
+        <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto ransition-transform duration-500 transform hover:scale-105 rounded-xl " :filename="articles.image3" :record="articles" />
+      </div>
+      
       </div>
 
       <div v-else class="flex justify-center">

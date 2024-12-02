@@ -42,9 +42,24 @@ export enum ArticlesCategoryOptions {
 }
 export type ArticlesRecord = {
 	category?: ArticlesCategoryOptions
+	content2?: HTMLString
+	content3?: HTMLString
+	content4?: HTMLString
+	content5?: HTMLString
+	content6?: HTMLString
 	content?: HTMLString
+	image2?: string
+	image3?: string
+	image4?: string
+	image5?: string
+	image6?: string
 	image?: string
 	title?: string
+	titre2?: string
+	titre3?: string
+	titre4?: string
+	titre5?: string
+	titre6?: string
 }
 
 export type UsersRecord = {
