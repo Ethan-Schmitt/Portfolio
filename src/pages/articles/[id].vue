@@ -31,8 +31,7 @@ onMounted(async () => {
 
     <div class="relative w-full h-[800px] bg-cover bg-center bg-overlay z-0"
       :style="{ backgroundImage: articles ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image})` : '' }">
-   
-      <div class="relative inset-0 bg-black opacity-50 z-12"></div>
+      <div class="absolute inset-0 bg-black opacity-50 z-1"></div>
       
    
       <div class="relative flex flex-col items-start justify-center h-full text-left text-white z-10 p-8 lg:ml-12 md:ml-12 ">
@@ -65,11 +64,56 @@ onMounted(async () => {
       <div class="text-lg text-white font-text p-6 rounded-lg">
           <div v-html="articles.content2"></div>
         </div>
-        <div class="flex justify-center mb-4 mt-10">
-        <ImgPb class="w-[920px] h-auto ransition-transform duration-500 transform hover:scale-105 rounded-xl " :filename="articles.image3" :record="articles" />
+
+              <div class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl">
+        <div v-html="articles.titre3"></div>
       </div>
-      
+
+      <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto transition-transform duration-500 transform hover:scale-105 rounded-xl" :filename="articles.image3" :record="articles" />
       </div>
+
+      <div class="text-lg text-white font-text p-6 rounded-lg">
+        <div v-html="articles.content3"></div>
+      </div>
+
+      <div class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl">
+        <div v-html="articles.titre4"></div>
+      </div>
+
+      <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto transition-transform duration-500 transform hover:scale-105 rounded-xl" :filename="articles.image4" :record="articles" />
+      </div>
+
+      <div class="text-lg text-white font-text p-6 rounded-lg">
+        <div v-html="articles.content4"></div>
+      </div>
+
+      <div class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl">
+        <div v-html="articles.titre5"></div>
+      </div>
+
+      <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto transition-transform duration-500 transform hover:scale-105 rounded-xl" :filename="articles.image5" :record="articles" />
+      </div>
+
+      <div class="text-lg text-white font-text p-6 rounded-lg">
+        <div v-html="articles.content5"></div>
+      </div>
+
+      <div class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl">
+        <div v-html="articles.titre6"></div>
+      </div>
+
+      <div class="flex justify-center mb-4 mt-10">
+        <ImgPb class="w-[920px] h-auto transition-transform duration-500 transform hover:scale-105 rounded-xl" :filename="articles.image6" :record="articles" />
+      </div>
+
+      <div class="text-lg text-white font-text p-6 rounded-lg">
+        <div v-html="articles.content6"></div>
+      </div>
+       
+</div>
 
       <div v-else class="flex justify-center">
         <p class="text-2xl text-center text-white">Chargement</p>

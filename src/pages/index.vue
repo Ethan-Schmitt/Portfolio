@@ -31,7 +31,7 @@ import carroussel from '@/components/icons/carroussel/carroussel.vue';
       </p>
       <img src="../components/icons/pp.png" alt="Photo de profil" class="w-[130px] h-[130px] md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-full object-cover shadow-lg">
     </div>
-    <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Découvrez mes projets</h4>
+    <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Mes derniers projets</h4>
     <h5 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Mes compétences</h5>
     <carroussel />
     <footers />
