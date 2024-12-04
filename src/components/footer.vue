@@ -4,7 +4,7 @@
       <div class="w-full h-1 bg-white justify-center mx-auto mb-10"></div>
       <div class="container mx-auto flex flex-col items-center space-y-6">
             <div class="relative flex items-center justify-start w-full md:absolute ">
-          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-14 w-auto md:mx-16 mx-7 md:mt-12 -mt-8 mb-8 md:h-20 md:w-auto ">
+          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-12 w-auto  md:h-14 md:w-auto md:mx-16 mx-7 md:mt-12 mb-8 md:h-20 md:w-auto ">
           <div class="absolute rotate-90 mt-36 ml-20">
             <animationG2  />
         </div>
@@ -14,19 +14,19 @@
   <!-- LinkedIn -->
   <a href="https://www.linkedin.com/in/ethan-schmitt-a0ab1b299/" target="_blank" rel="noopener noreferrer" 
      class="inline-flex items-center justify-center  transition-transform transform hover:scale-110">
-    <linkedIn class="h-12 w-12" />
+    <linkedIn class="h-10 w-10 md:h-12 md:w-12" />
   </a>
   
   <!-- GitHub -->
   <a href="https://github.com/Ethan-Schmitt" target="_blank" rel="noopener noreferrer" 
      class="inline-flex items-center justify-center   transition-transform transform hover:scale-110">
-    <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-16 w-16 ">
+    <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-12 w-12 md:h-16 md:w-16 ">
   </a>
   
   <!-- Behance -->
   <a href="https://www.behance.net/ethanschmitt5/projects" target="_blank" rel="noopener noreferrer" 
      class="inline-flex items-center justify-center  transition-transform transform hover:scale-110">
-    <behance class="h-12 w-12"/>
+    <behance class="h-10 w-10 md:h-12 md:w-12"/>
   </a>
 </div>
 
