@@ -4,7 +4,7 @@
       <div class="w-full h-1 bg-white justify-center mx-auto mb-10"></div>
       <div class="container mx-auto flex flex-col items-center space-y-6">
             <div class="relative flex items-center justify-start w-full md:absolute ">
-          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-12 w-auto  md:h-14 md:w-auto md:mx-16 mx-7 md:mt-12 mb-8 md:h-20 md:w-auto ">
+          <img src="@/components/icons/logoES.png" alt="Logo ES" class="h-12 w-auto md:mx-16 mx-7 md:mt-12 mb-8 md:h-20 md:w-auto ">
           <div class="absolute rotate-90 mt-36 ml-20">
             <animationG2  />
         </div>

@@ -35,7 +35,7 @@ import cardsaccueil from '@/components/animations/cardsaccueil.vue';
     <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12">Mes derniers projets</h4>
     <cardsaccueil />
     <h5 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-20 mt-20">Mes compétences</h5>
-    <carroussel />
+    <carroussel class="mt-12 mb-32"/>
     <footers />
   </div>
 </template>
