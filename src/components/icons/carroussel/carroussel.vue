@@ -23,8 +23,8 @@ export default {
     return {
       images: [
         { src: "illustrator-logo.png", alt: "Illustrator Logo" },
-        { src: "image-5.png", alt: "Image 5" },
-        { src: "image-6.png", alt: "Image 6" },
+        { src: "image-5.png", alt: "html" },
+        { src: "image-6.png", alt: "css" },
         { src: "javascript-logo.png", alt: "JavaScript Logo" },
         { src: "photoshop-original-logo.png", alt: "Photoshop Logo" },
         { src: "Ubuntu-logo.png", alt: "Ubuntu Logo" },
