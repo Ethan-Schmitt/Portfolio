@@ -11,7 +11,8 @@ export default {
   "bot-deg": " #24aae3",
   "left-btn": " #763af5",
   "right-btn": " #a604f2",
-  "or": "#ffd700"
+  "or": "#ffd700",
+  "gris": "#49798d",
  },
  "fontSize": {
   "sm": "0.875rem",

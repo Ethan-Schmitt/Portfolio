@@ -1,36 +1,79 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { pb } from '@/backend';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import type { ArticlesResponse } from '@/pocketbase-types';
 import Headers from '@/components/HeaderPage.vue';
 import footers from '@/components/footer.vue';
 import ImgPb from '@/components/ImgPb.vue';
-import triforce from '@/components/animations/triforces.vue'; 
+import triforce from '@/components/animations/triforces.vue';
 import cardsaccueil from '@/components/animations/cardsaccueil.vue';
-
-
 
 // Définir un type pour un article
 const route = useRoute();
 const articles = ref<ArticlesResponse | null>(null);
 const isLoading = ref(true);
 
+// Gestion de la progression visuelle
+const currentSlide = ref(0);
+const isSliderVisible = ref(false); 
+
 onMounted(async () => {
   try {
+    // Récupération de l'article
     articles.value = await pb.collection<ArticlesResponse>('articles').getOne(route.params.id);
   } catch (error) {
     console.error(error);
   } finally {
     isLoading.value = false;
   }
+
+  // Ajout de l'écouteur de scroll
+  window.addEventListener('scroll', handleScroll);
 });
 
+onBeforeUnmount(() => {
+  // Suppression de l'écouteur de scroll
+  window.removeEventListener('scroll', handleScroll);
+});
+
+function handleScroll() {
+  const slides = document.querySelectorAll('.sticky'); // Récupère les sections avec la classe "sticky"
+  let slideInView = false;
+
+  slides.forEach((slide, index) => {
+    const rect = slide.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+      currentSlide.value = index; // Met à jour le slide courant
+      slideInView = true; // Un slide est visible
+    }
+  });
+
+  isSliderVisible.value = slideInView; // Affiche ou cache le slider
+}
+
+function getSlideCount(): number {
+  if (!articles.value) return 0;
+  let count = 0;
+  if (articles.value.title || articles.value.content) count++;
+  if (articles.value.image2) count++;
+  if (articles.value.titre2 || articles.value.content2) count++;
+  if (articles.value.image3) count++;
+  if (articles.value.titre3 || articles.value.content3) count++;
+  if (articles.value.image4) count++;
+  if (articles.value.titre4 || articles.value.content4) count++;
+  if (articles.value.image5) count++;
+  if (articles.value.titre5 || articles.value.content5) count++;
+  if (articles.value.image6) count++;
+  if (articles.value.titre6 || articles.value.content6) count++;
+  // Ajoutez ici les autres slides si nécessaire
+  return count;
+}
 </script>
 
 <template>
-  <div class="relative bg-gradient-to-b from-top-deg to-bot-deg min-h-screen">
+  <div class="relative bg-top-deg min-h-screen">
     <Headers />
 
     <div
@@ -61,82 +104,98 @@ onMounted(async () => {
     <!-- Contenu principal -->
     <div v-if="articles">
 <!-- Slide 1 - Texte -->
-
-<div v-if="articles.title || articles.content" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#0f1e34] text-white px-8 text-center">
+<div v-if="articles.title || articles.content" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c132d] to-[#102d4d] text-white px-8">
   <h1 class="text-5xl font-titre mb-4" v-html="articles.title"></h1>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28" v-html="articles.content"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px]" v-html="articles.content"></div>
 </div>
 
 <!-- Slide 2 - Image -->
-<div v-if="articles.image2" class="sticky top-0 h-screen flex justify-center items-center bg-[#102d4d]">
+<div v-if="articles.image2" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#102d4d] to-[#184869]">
   <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image2" :record="articles" />
 </div>
 
 <!-- Slide 2 - Texte -->
-<div v-if="articles.titre2 || articles.content2" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#1a3b5a] text-white px-8 text-center">
+<div v-if="articles.titre2 || articles.content2" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#184869] to-[#1f6093] text-white px-8 ">
   <h2 class="text-4xl font-titre mb-4" v-html="articles.titre2"></h2>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28 " v-html="articles.content2"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px] " v-html="articles.content2"></div>
 </div>
 
 <!-- Slide 3 - Image -->
-<div v-if="articles.image3" class="sticky top-0 h-screen flex justify-center items-center bg-[#1a3b5a]">
+<div v-if="articles.image3" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#1f6093] to-[#2a78b4]">
   <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image3" :record="articles" />
 </div>
 
 <!-- Slide 3 - Texte -->
-<div v-if="articles.titre3 || articles.content3" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#1f4d6f] text-white px-8 text-center">
+<div v-if="articles.titre3 || articles.content3" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#2a78b4] to-[#3a92d6] text-white px-8 ">
   <h3 class="text-4xl font-titre mb-4" v-html="articles.titre3"></h3>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28" v-html="articles.content3"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px]" v-html="articles.content3"></div>
 </div>
 
 <!-- Slide 4 - Image -->
-<div v-if="articles.image4" class="sticky top-0 h-screen flex justify-center items-center bg-[#1f4d6f]">
+<div v-if="articles.image4" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#3a92d6] to-[#3b6f88]">
   <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image4" :record="articles" />
 </div>
 
 <!-- Slide 4 - Texte -->
-<div v-if="articles.titre4 || articles.content4" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#2c5d7a] text-white px-8 text-center">
+<div v-if="articles.titre4 || articles.content4" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#3b6f88] to-[#2c5d7a] text-white px-8">
   <h4 class="text-4xl font-titre mb-4" v-html="articles.titre4"></h4>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28" v-html="articles.content4"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px]" v-html="articles.content4"></div>
 </div>
 
 <!-- Slide 5 - Image -->
-<div v-if="articles.image5" class="sticky top-0 h-screen flex justify-center items-center bg-[#2c5d7a]">
+<div v-if="articles.image5" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#2c5d7a] to-[#1f4d6f]">
   <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image5" :record="articles" />
 </div>
 
 <!-- Slide 5 - Texte -->
-<div v-if="articles.titre5 || articles.content5" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#3b6f88] text-white px-8 text-center">
+<div v-if="articles.titre5 || articles.content5" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#1f4d6f] to-[#184869] text-white px-8">
   <h5 class="text-4xl font-titre mb-4" v-html="articles.titre5"></h5>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28" v-html="articles.content5"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px]" v-html="articles.content5"></div>
 </div>
 
 <!-- Slide 6 - Image -->
-<div v-if="articles.image6" class="sticky top-0 h-screen flex justify-center items-center bg-[#3b6f88]">
+<div v-if="articles.image6" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#184869] to-[#102d4d]">
   <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image6" :record="articles" />
 </div>
 
 <!-- Slide 6 - Texte -->
-<div v-if="articles.titre6 || articles.content6" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-[#49798d] text-white px-8 text-center">
+<div v-if="articles.titre6 || articles.content6" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#102d4d] to-[#0c132d] text-white px-8 ">
   <h6 class="text-4xl font-titre mb-4" v-html="articles.titre6"></h6>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-28" v-html="articles.content6"></div>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[400px]" v-html="articles.content6"></div>
 </div>
-
-
-
-
-
-    <div v-else class="flex justify-center">
+<div v-else class="flex justify-center">
       <p class="text-2xl text-center text-white"></p>
     </div>
-  </div>
-  <h4 class="flex justify-center items-center text-or font-titre md:text-5xl text-3xl mt-12 md:mt-12   ">Mes derniers projets</h4>
+
+<!-- Progression visuelle -->
+<div
+  v-if="isSliderVisible"
+  class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 z-50"
+>
+<div
+  v-for="(slide, index) in getSlideCount()"
+  :key="index"
+  class="transition-colors rounded-full"
+  :class="{
+    'w-3 h-3 lg:w-5 lg:h-5 md:w-4 md:h-4 bg-white': currentSlide === index,
+    'w-3 h-3 lg:w-5 lg:h-5 md:w-4 md:h-4 bg-gray-500': currentSlide !== index,
+  }"
+></div>
+</div>
+
+</div>
+
+  <div class="w-2/3 h-1 bg-white justify-center mx-auto md:mt-0 animate-on-scroll"></div>
+  <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl mt-12 md:mt-28   ">Mes derniers projets</h4>
 <cardsaccueil class="mb-16" />
 <div class="flex justify-center items-center mb-10 mt-0 md:mt-20 lg:mt-20">
   <img src="../../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-0 md:mt-20 lg:mt-20">
 </div>
-    <footers />
-  </div>
+   
+<footers />
+  
+ 
+</div>
 </template>
 
 
