@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router';
 import ImgPb from '@/components/ImgPb.vue';
 import type { ArticlesResponse } from '@/pocketbase-types';
 import Headers from '@/components/HeaderPage.vue';
+import footers from '@/components/footer.vue';
 
 const router = useRouter();
 const articles = ref<ArticlesResponse[] | null>(null);
@@ -137,6 +138,7 @@ onMounted(fetchArticles);
         </div>
       </div>
     </div>
+    <footers />
   </div>
 </template>
 

@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import Headers from '@/components/HeaderPage.vue';
@@ -29,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative bg-gradient-to-b from-top-deg to-bot-deg min-h-screen">
+  <div class="relative animate-gradient bg-gradient-to-r from-[#0c132d] via-[#102d4d] to-[#1a3b5a] min-h-screen">
     <Headers />
     <animationD class="hidden fixed mt-36 right-0 absolute lg:block lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20 animate-on-scroll" />
     <animationG class="hidden lg:block fixed mt-96 absolute lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20 animate-on-scroll" />
@@ -39,7 +38,7 @@ onMounted(() => {
       <h2 class="text-5xl md:text-7xl lg:text-8xl font-titre shine-text animate-on-scroll">Web developer</h2>
       <triforce class="w-[48px] h-[45px] md:w-16 md:h-16 lg:w-65 lg:h-49 absolute -bottom-10 left-0 animate-on-scroll" />
     </div>
-    <div class="w-2/3 h-1 bg-white justify-center mx-auto mb-10 -mt-20 md:mt-0 animate-on-scroll"></div> <!-- Point de départ de l'animation -->
+    <div class="w-2/3 h-1 bg-white justify-center mx-auto mb-10 -mt-20 md:mt-0 animate-on-scroll"></div>
     <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll">A propos</h3>
     <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-52 p-4 md:p-12 animate-on-scroll">
       <p class="text-white text-base md:text-lg font-text text-center md:text-left max-w-3xl animate-on-scroll">
@@ -58,6 +57,41 @@ onMounted(() => {
 </template>
 
 <style scoped>
+html, body {
+  height: 100%;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #3586ff; /* Un fond bleu de base pour la section */
+  overflow: hidden;
+}
+
+section .air {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(-45deg, #0c132d 0%, #102d4d 25%, #1a3b5a 51%, #3b6f88 100%);
+  animation: airAnim 15s ease-in-out infinite;
+  transform: translateX(0); /* Fixe la position de l'élément sans affecter les autres éléments */
+}
+
+@keyframes airAnim {
+  0% {
+    transform: translateX(100%); /* Déplacer la bande à droite au début */
+  }
+  50% {
+    transform: translateX(-100%); /* Déplacer la bande à gauche au centre */
+  }
+  100% {
+    transform: translateX(100%); /* Déplacer la bande à droite à la fin */
+  }
+}
+
 .shine-text {
   background: linear-gradient(90deg, rgb(255, 255, 255, 0.9), #ffd700, rgba(255, 255, 255, 0.901));
   background-size: 200%;
@@ -78,12 +112,13 @@ onMounted(() => {
 
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(50px); /* Commence en bas */
   transition: opacity 1s ease, transform 1s ease;
 }
 
 .animate-fade-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0); /* Remonte à sa position d'origine */
 }
+
 </style>
