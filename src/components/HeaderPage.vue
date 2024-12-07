@@ -39,7 +39,7 @@ watch(activeMenu, (newVal) => {
           <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/articles" @click="closeMenu">Projets</RouterLink>
         </li>
         <li class="mb-4 lg:mb-0 lg:mr-4">
-          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/" @click="closeMenu">A propos</RouterLink>
+          <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="#about" @click="closeMenu">A propos</RouterLink>
         </li>
         <li>
           <RouterLink class="block p-4 rounded-lg text-white font-titre text-lg" to="/" @click="closeMenu">Contact</RouterLink>

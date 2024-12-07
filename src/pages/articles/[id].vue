@@ -6,10 +6,7 @@ import { useRoute } from 'vue-router';
 import type { ArticlesResponse } from '@/pocketbase-types';
 import Headers from '@/components/HeaderPage.vue';
 import footers from '@/components/footer.vue';
-import ImgPb from '@/components/ImgPb.vue';
 import triforce from '@/components/animations/triforces.vue';
-import cardsaccueil from '@/components/animations/cardsaccueil.vue';
-
 // Définir un type pour un article
 const route = useRoute();
 const articles = ref<ArticlesResponse | null>(null);
@@ -76,9 +73,7 @@ function getSlideCount(): number {
   <div v-if="isLoading" class="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-[#102d4d] to-[#0c132d] text-white z-50">
     <div class="flex flex-col items-center space-y-4">     
       <p class="text-xl font-medium">Chargement en cours...</p>
-     <triforce
-        class="animate-spin-slow w-16 h-16 md:w-24 md:h-24 lg:w-16 lg:h-16"
-      />
+     <img src="../../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-0 md:mt-20 lg:mt-20">
     </div>
   </div>
   <div class="relative bg-top-deg min-h-screen">
@@ -118,10 +113,10 @@ function getSlideCount(): number {
 </div>
 
 <!-- Slide 2 - Image -->
-<div v-if="articles.image3" class="sticky top-0 h-screen bg-cover bg-center"
+<div v-if="articles.image2" class="sticky top-0 h-screen bg-cover bg-center"
   :style="{
     backgroundImage: articles
-      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image3})`
+      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image2})`
       : ''
   }">
   <div class="absolute inset-0 bg-black opacity-30 z-1"></div>
@@ -134,8 +129,13 @@ function getSlideCount(): number {
 </div>
 
 <!-- Slide 3 - Image -->
-<div v-if="articles.image3" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#1f6093] to-[#2a78b4]">
-  <ImgPb class="max-w-full h-auto md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image3" :record="articles" />
+<div v-if="articles.image3" class="sticky top-0 h-screen bg-cover bg-center"
+  :style="{
+    backgroundImage: articles
+      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image3})`
+      : ''
+  }">
+  <div class="absolute inset-0 bg-black opacity-30 z-1"></div>
 </div>
 
 <!-- Slide 3 - Texte -->
@@ -145,8 +145,13 @@ function getSlideCount(): number {
 </div>
 
 <!-- Slide 4 - Image -->
-<div v-if="articles.image4" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#3a92d6] to-[#3b6f88]">
-  <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image4" :record="articles" />
+<div v-if="articles.image4" class="sticky top-0 h-screen bg-cover bg-center"
+  :style="{
+    backgroundImage: articles
+      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image4})`
+      : ''
+  }">
+  <div class="absolute inset-0 bg-black opacity-30 z-1"></div>
 </div>
 
 <!-- Slide 4 - Texte -->
@@ -156,10 +161,14 @@ function getSlideCount(): number {
 </div>
 
 <!-- Slide 5 - Image -->
-<div v-if="articles.image5" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#2c5d7a] to-[#1f4d6f]">
-  <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image5" :record="articles" />
+<div v-if="articles.image5" class="sticky top-0 h-screen bg-cover bg-center"
+  :style="{
+    backgroundImage: articles
+      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image5})`
+      : ''
+  }">
+  <div class="absolute inset-0 bg-black opacity-30 z-1"></div>
 </div>
-
 <!-- Slide 5 - Texte -->
 <div v-if="articles.titre5 || articles.content5" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#1f4d6f] to-[#184869] text-white px-8">
   <h5 class="text-4xl font-titre mb-4" v-html="articles.titre5"></h5>
@@ -167,10 +176,14 @@ function getSlideCount(): number {
 </div>
 
 <!-- Slide 6 - Image -->
-<div v-if="articles.image6" class="sticky top-0 h-screen flex justify-center items-center bg-gradient-to-b from-[#184869] to-[#102d4d]">
-  <ImgPb class="w-[100%] max-h-[100%] md:w-[80%] md:max-h-[90%] rounded-3xl" :filename="articles.image6" :record="articles" />
+<div v-if="articles.image6" class="sticky top-0 h-screen bg-cover bg-center"
+  :style="{
+    backgroundImage: articles
+      ? `url(https://portfolio-ethan.pockethost.io/api/files/articles/${articles.id}/${articles.image6})`
+      : ''
+  }">
+  <div class="absolute inset-0 bg-black opacity-30 z-1"></div>
 </div>
-
 <!-- Slide 6 - Texte -->
 <div v-if="articles.titre6 || articles.content6" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#102d4d] to-[#0c132d] text-white px-8 ">
   <h6 class="text-4xl font-titre mb-4" v-html="articles.titre6"></h6>
@@ -200,7 +213,6 @@ function getSlideCount(): number {
 
   <div class="w-2/3 h-1 bg-white justify-center mx-auto md:mt-0 animate-on-scroll"></div>
   <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl mt-12 md:mt-28   ">Mes derniers projets</h4>
-<cardsaccueil class="mb-16" />
 <div class="flex justify-center items-center mb-10 mt-0 md:mt-20 lg:mt-20">
   <img src="../../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-0 md:mt-20 lg:mt-20">
 </div>
@@ -236,5 +248,4 @@ function getSlideCount(): number {
 .animate-spin-slow {
   animation: spin-slow 2s linear infinite;
 }
-
 </style>

@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import {onMounted } from 'vue';
 import Headers from '@/components/HeaderPage.vue';
 import animationD from '@/components/animations/animationD.vue';
 import animationG from '@/components/animations/animationG.vue';
@@ -38,8 +39,9 @@ onMounted(() => {
       <h2 class="text-5xl md:text-7xl lg:text-8xl font-titre shine-text animate-on-scroll">Web developer</h2>
       <triforce class="w-[48px] h-[45px] md:w-16 md:h-16 lg:w-65 lg:h-49 absolute -bottom-10 left-0 animate-on-scroll" />
     </div>
+     <section id="about" >
     <div class="w-2/3 h-1 bg-white justify-center mx-auto mb-10 -mt-20 md:mt-0 animate-on-scroll"></div>
-    <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll">A propos</h3>
+   <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll " >A propos</h3>
     <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-52 p-4 md:p-12 animate-on-scroll">
       <p class="text-white text-base md:text-lg font-text text-center md:text-left max-w-3xl animate-on-scroll">
         Bienvenue ! Je m’appelle Ethan, j’ai 20 ans et je suis étudiant en deuxième année de BUT Métiers du Multimédia et de l’Internet (MMI), avec une spécialisation en développement web. Passionné par les nouvelles technologies, les jeux vidéo et l’automobile, je suis constamment motivé par de nouveaux défis. Curieux et polyvalent, j’aime explorer et expérimenter avec tout ce qui touche à la technologie, qu’il s’agisse de PC, de tablettes, de téléphones ou de consoles.
@@ -48,6 +50,7 @@ onMounted(() => {
       </p>
       <img src="../components/icons/pp.png" alt="Photo de profil" class="w-[130px] h-[130px] md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-full object-cover shadow-lg animate-on-scroll">
     </div>
+    </section>
     <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12 animate-on-scroll">Mes derniers projets</h4>
     <cardsaccueil class="animate-on-scroll" />
     <h5 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-20 mt-20 animate-on-scroll">Mes compétences</h5>
@@ -56,30 +59,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-html, body {
-  height: 100%;
-}
-
-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: #3586ff; /* Un fond bleu de base pour la section */
-  overflow: hidden;
-}
-
-section .air {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(-45deg, #0c132d 0%, #102d4d 25%, #1a3b5a 51%, #3b6f88 100%);
-  animation: airAnim 15s ease-in-out infinite;
-  transform: translateX(0); /* Fixe la position de l'élément sans affecter les autres éléments */
-}
-
+<style >
 @keyframes airAnim {
   0% {
     transform: translateX(100%); /* Déplacer la bande à droite au début */
@@ -121,4 +101,27 @@ section .air {
   transform: translateY(0); /* Remonte à sa position d'origine */
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg,#2b6ba2, #1a4061, #0c132d,#0c132d,  #153d67, #2b6ba2);
+  background-size: 500% 500%;
+  animation: gradient 20s linear infinite;
+}
 </style>
