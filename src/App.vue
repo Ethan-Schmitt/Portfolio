@@ -6,6 +6,8 @@ const progress = ref(0); // Progression du texte
 
 // Durée du chargement
 const totalTime = 5000;
+const animationDuration = 1500; // Durée de l'animation d'ouverture
+
 onMounted(() => {
   const interval = 100;
   const steps = totalTime / interval;
@@ -16,45 +18,41 @@ onMounted(() => {
     progress.value = Math.min((currentStep / steps) * 100, 100); // Progression
     if (currentStep >= steps) {
       clearInterval(timer);
-      isLoading.value = false;
+      // Après la fin du chargement, attendre un peu avant de finir l'animation d'ouverture
+      setTimeout(() => {
+        isLoading.value = false;
+      }, animationDuration); // Attendre la fin de l'animation d'ouverture
     }
   }, interval);
 });
 </script>
 
 <template>
-  <div id="app" class="wrapper">
-    <!-- Chargement -->
-    <div v-if="isLoading" class="loader-container">
-      
-      <div class="font-titre lg:mt-0 md:mt-0 -mt-10 text-white text-xl md:text-4xl lg:text-4xl  justify-center text-center ">
-        <p class="font-titre lg:mt-0 md:mt-0 text-black text-center">Bienvenue sur mon portfolio</p>
-        <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 7) }" class="mt-10">
-          {{ char }}
-        </span>
-      </div>
-    </div>
-
+  <div id="app" v-show="!isLoading" class="wrapper">
     <!-- Animation d'ouverture lorsque le chargement est terminé -->
-    <div v-else>
-      <div class="top-container"></div>
-      <div class="bottom-container"></div>
+    <div :class="['top-container', { 'animate-top': !isLoading }]"></div>
+    <div :class="['bottom-container', { 'animate-bottom': !isLoading }]"></div>
 
-      <!-- Contenu principal -->
-      <main>
-        <RouterView />
-      </main>
+    <!-- Contenu principal -->
+    <main>
+      <RouterView />
+    </main>
+  </div>
+
+  <!-- Chargement -->
+  <div v-show="isLoading" class="loader-container">
+    <div class="font-titre lg:mt-0 md:mt-0 -mt-10 text-white text-xl md:text-4xl lg:text-4xl justify-center text-center ">
+      <p class="font-titre lg:mt-0 md:mt-0 text-black text-center">Bienvenue sur mon portfolio</p>
+      <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 7) }" class="mt-10">
+        {{ char }}
+      </span>
     </div>
   </div>
 </template>
 
 <style scoped>
 /* Fond transparent pendant le chargement */
-.wrapper {
-  background: transparent;
-  min-height: 100vh;
-  overflow: hidden;
-}
+
 
 /* Chargement */
 .loader-container {
@@ -67,7 +65,6 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom, #ffffff 50%, #000000 50%);
-  z-index: 9999;
 }
 
 /* Texte du chargement */
@@ -89,25 +86,29 @@ onMounted(() => {
   height: 50%;
   background: #ffffff;
   z-index: 10000;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-out;
+  transition: transform 1.5s ease-out;
 }
 
 .top-container {
-  background: #ffffff;
   top: 0;
   transform: translateY(0);
-  animation: moveTopToTop 1.5s forwards;
 }
 
 .bottom-container {
-  background: #000000;
   top: 50%;
   transform: translateY(0);
-  animation: moveBottomToBottom 1.5s forwards;
 }
 
-/* Animation avec keyframes */
+/* Animation de décalage */
+.animate-top {
+  transform: translateY(-100%);
+}
+
+.animate-bottom {
+  transform: translateY(100%);
+}
+
+/* Animation de texte */
 @keyframes moveBottomToBottom {
   0% {
     transform: translateY(0);

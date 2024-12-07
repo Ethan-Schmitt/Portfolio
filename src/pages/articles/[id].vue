@@ -70,12 +70,6 @@ function getSlideCount(): number {
 </script>
 
 <template>
-  <div v-if="isLoading" class="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-[#102d4d] to-[#0c132d] text-white z-50">
-    <div class="flex flex-col items-center space-y-4">     
-      <p class="text-xl font-medium">Chargement en cours...</p>
-     <img src="../../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-0 md:mt-20 lg:mt-20">
-    </div>
-  </div>
   <div class="relative bg-top-deg min-h-screen">
     <Headers />
 
@@ -248,4 +242,24 @@ function getSlideCount(): number {
 .animate-spin-slow {
   animation: spin-slow 2s linear infinite;
 }
+
+#html-spinner{
+  width:40px;
+  height:40px;
+  border:4px solid #fcd779;
+  border-top:4px solid white;
+  border-radius:50%;
+}
+.parent {
+  height: 2000px; /* Ajout d'une hauteur pour tester le défilement */
+}
+
+.sticky-element {
+  position: sticky;
+  top: 0; /* L'élément va se fixer en haut de son parent */
+  background-color: lightblue;
+  padding: 10px;
+  z-index: 10; /* Assurer que l'élément reste au-dessus des autres */
+}
+
 </style>
