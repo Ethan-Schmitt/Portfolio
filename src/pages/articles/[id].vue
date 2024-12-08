@@ -7,6 +7,7 @@ import type { ArticlesResponse } from '@/pocketbase-types';
 import Headers from '@/components/HeaderPage.vue';
 import footers from '@/components/footer.vue';
 import triforce from '@/components/animations/triforces.vue';
+import cardsaccueil from '@/components/animations/cardsaccueil.vue';
 
 // Définir un type pour un article
 const route = useRoute();
@@ -249,10 +250,10 @@ function getSlideCount(): number {
 
   <div class="w-2/3 h-1 bg-white justify-center mx-auto md:mt-0 animate-on-scroll"></div>
   <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl mt-12 md:mt-28   ">Mes derniers projets</h4>
+  <cardsaccueil />
 <div class="flex justify-center items-center mb-10 mt-0 md:mt-20 lg:mt-20">
   <img src="../../components/animations/Anima.gif" alt="GIF animé" class="mb-10 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[75px] h-[71px] mt-0 md:mt-20 lg:mt-20">
 </div>
-   
 <footers />
   
       </div>

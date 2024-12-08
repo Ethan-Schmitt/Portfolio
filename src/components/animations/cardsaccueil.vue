@@ -1,16 +1,43 @@
-<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-12 mt-8">
+    <!-- Carte article -->
+    <div
+      v-for="article in articles"
+      :key="article.id"
+      @click="handleCardClick(article.id)"
+      class="relative h-72 rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform transform card"
+    >
+      <!-- Animation de bordure -->
+      <div class="absolute inset-0 rounded-lg border-animation"></div>
+
+      <!-- Contenu de l'image -->
+      <div
+        class="absolute inset-1 bg-cover bg-center content rounded-lg"
+        :style="{ backgroundImage: `url(${pb.files.getUrl(article, article.image)})` }"
+      ></div>
+
+      <!-- Superposition en dégradé pour le texte -->
+      <div class="absolute bottom-1 left-1 right-1 h-2/3 bg-gradient-to-t z-10"></div>
+
+      <!-- Texte de la carte -->
+      <div class="absolute bottom-0 left-0 right-0 text-white p-4 flex flex-col justify-end z-10">
+        <h3 class="text-lg font-semibold">{{ article.title }}</h3>
+        <p class="text-sm mt-1">{{ article.category }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue';
 import { pb } from '@/backend';
 import { useRouter } from 'vue-router';
-import ImgPb from '@/components/ImgPb.vue';
 import type { ArticlesResponse } from '@/pocketbase-types';
 
 const router = useRouter();
 const articles = ref<ArticlesResponse[] | null>(null);
 const selectedCategory = ref('');
 const isLoading = ref(true);
-const activeCardId = ref<string | null>(null); // Gère l'état de la carte active
 
 // Récupérer les articles
 const fetchArticles = async () => {
@@ -33,58 +60,58 @@ const fetchArticles = async () => {
 
 // Gestion du clic sur la carte
 const handleCardClick = (articleId: string) => {
-  if (activeCardId.value === articleId) {
-    router.push(`/articles/${articleId}`); // Redirige vers l'article
-  } else {
-    activeCardId.value = articleId; // Active l'overlay
-  }
+  router.push(`/articles/${articleId}`);
 };
 
 watch(selectedCategory, fetchArticles);
 onMounted(fetchArticles);
 </script>
-<template>
-  <div class="justify-center mx-48 md:mx-8 sm:mx-12">
-    <div v-if="isLoading" class="flex justify-center mt-6">
-      <div class="flex flex-row gap-2">
-        <div class="w-4 h-4 rounded-full bg-or animate-bounce [animation-delay:.7s]"></div>
-        <div class="w-4 h-4 rounded-full bg-or animate-bounce [animation-delay:.3s]"></div>
-        <div class="w-4 h-4 rounded-full bg-or animate-bounce [animation-delay:.7s]"></div>
-      </div>
-    </div>
-    <div class="absolute md:-top-2 lg:left-7 lg:right-7 md:-top-2 md:left-7 md:right-7  -inset-3 -top-2 -left-[140px] bg-gradient-to-tl from-or via-or to-white -right-[140px] rounded-lg animate-pulse"></div>
-    <!-- Affichage des articles -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 -mx-32 md:mx-10 h-[550px] md:h-full mt-6">
-      <div
-        v-for="article in articles"
-        :key="article.id"
-        @click="handleCardClick(article.id)"
-        class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer"
-      >
 
-        <!-- Contenu de la carte -->
-        <div class="relative bg-white rounded-lg overflow-hidden shadow-lg">
-          <!-- Image de la carte -->
-          <ImgPb
-            :filename="article.image"
-            :record="article"
-            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-          />
+<style scoped>
+/* Apparence de la carte */
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-          <!-- Overlay avec les informations -->
-          <div
-            :class="{
-              'opacity-100': activeCardId === article.id,
-              'opacity-0 group-hover:opacity-100': activeCardId !== article.id,
-            }"
-            class="absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300 flex flex-col justify-center items-center text-center text-white p-4"
-          >
-            <h3 class="text-lg font-semibold">{{ article.title }}</h3>
-            <p class="text-sm mt-2">{{ article.category }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+/* Animation de la bordure */
+.border-animation {
+  border-radius: 10px;
+  border: 4px solid transparent; /* Épaisseur de la bordure */
+  background: linear-gradient(90deg, #ffd700, #ffffff, #ffd700); /* Ajout d'une boucle au gradient */
+  background-size: 400% 400%;
+  animation: rotateBorderSmooth 17s linear infinite; /* Durée augmentée pour fluidité */
+  z-index: 1; /* S'affiche sous le contenu */
+  pointer-events: none; /* Ignore les clics sur la bordure */
+}
+
+/* Contenu de l'image */
+.content {
+  position: absolute;
+  inset: 5px; /* Réduction de la taille pour exposer la bordure */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px; /* Coin arrondi pour l'image */
+  z-index: 2;
+}
+
+/* Animation fluide pour la bordure */
+@keyframes rotateBorderSmooth {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%; /* Transition fluide vers le centre */
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+/* Gradient superposé pour le texte */
+.bg-gradient-to-t {
+  background: linear-gradient(to top, black, transparent);
+}
+</style>
 

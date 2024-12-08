@@ -34,17 +34,19 @@ const fetchArticles = async () => {
 
 // Gestion du clic sur la carte
 const handleCardClick = (articleId: string) => {
-  if (activeCardId.value === articleId) {
-    router.push(`/articles/${articleId}`); // Redirige vers l'article
-  } else {
-    activeCardId.value = articleId; // Active l'overlay
-  }
+  router.push(`/articles/${articleId}`); // Redirige immédiatement vers l'article
 };
 
 watch(selectedCategory, fetchArticles);
 onMounted(fetchArticles);
+const borderColors = [
+  'border-top-deg',
+  'border-mid-deg',
+  'border-bot-deg',
+  'border-left-btn',
+  'border-right-btn',
+];
 </script>
-
 <template>
   <div class="relative animate-gradient min-h-screen">
     <Headers />
@@ -111,32 +113,26 @@ onMounted(fetchArticles);
 
       <!-- Affichage des articles -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 -mx-32 md:-mx-0 sm:-mx-22 mt-6">
-        <div
-          v-for="article in articles"
-          :key="article.id"
-          @click="handleCardClick(article.id)"
-          class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer"
-        >
-          <!-- Image de la carte -->
-          <ImgPb
-            :filename="article.image"
-            :record="article"
-            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-
-          <!-- Overlay avec les informations -->
-          <div
-            :class="{
-              'opacity-100': activeCardId === article.id,
-              'opacity-0 group-hover:opacity-100': activeCardId !== article.id,
-            }"
-            class="absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300 flex flex-col justify-center items-center text-center text-white p-4"
-          >
-            <h3 class="text-lg font-semibold">{{ article.title }}</h3>
-            <p class="text-sm mt-2">{{ article.category }}</p>
-          </div>
-        </div>
+    <div
+      v-for="(article, index) in articles"
+      :key="article.id"
+      @click="handleCardClick(article.id)"
+      :class="`relative group overflow-hidden rounded-lg shadow-lg cursor-pointer border-4 ${borderColors[index % borderColors.length]}`"
+    >
+      <!-- Image de la carte -->
+      <ImgPb
+        :filename="article.image"
+        :record="article"
+        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+      />
+      <div class="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t z-10"></div>
+      <!-- Overlay avec les informations -->
+      <div class="absolute bottom-0 left-0 right-0 text-white p-4 flex flex-col justify-end z-10">
+        <h3 class="text-lg font-semibold">{{ article.title }}</h3>
+        <p class="text-sm mt-1">{{ article.category }}</p>
       </div>
+    </div>
+  </div>
     </div>
     <footers />
   </div>
@@ -168,8 +164,30 @@ onMounted(fetchArticles);
   animation: gradient 20s linear infinite;
 }
 
+.border-red-500 {
+  border-color: #0c132d;
+}
+.border-blue-500 {
+  border-color: #102d4d;
+}
+.border-green-500 {
+  border-color: #24aae3;
+}
+.border-pink-500 {
+  border-color: #763af5;
+}
+.border-purple-500 {
+  border-color: #a604f2;
+}
 
+/* Transition sur le zoom de l'image */
+.group-hover:scale-110 {
+  transform: scale(1.1);
+}
 
+.bg-gradient-to-t {
+  background: linear-gradient(to top, black, transparent);
+}
 
 </style>
 
