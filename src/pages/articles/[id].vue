@@ -7,22 +7,50 @@ import type { ArticlesResponse } from '@/pocketbase-types';
 import Headers from '@/components/HeaderPage.vue';
 import footers from '@/components/footer.vue';
 import triforce from '@/components/animations/triforces.vue';
+
 // Définir un type pour un article
 const route = useRoute();
 const articles = ref<ArticlesResponse | null>(null);
 const isLoading = ref(true);
-
-// Gestion de la progression visuelle
+const progress = ref(0); // Progrès de chargement (pourcentage)
+const loadingText = 'Chargement...';
+const visibleCharacters = ref(0); // Nombre de caractères visibles dans le texte
+const isAnimationComplete = ref(false);
 const currentSlide = ref(0);
-const isSliderVisible = ref(false); 
+const isSliderVisible = ref(false);
+
+const animationDuration = 1500;
 
 onMounted(async () => {
+  const startTime = performance.now(); // Chronométrage pour le calcul du temps de chargement // Intervalle pour l'affichage progressif des caractères
+  const totalCharacters = loadingText.length; // Nombre total de caractères à afficher
+  const steps = totalCharacters;
+
+  let loadedCharacters = 0;
+
   try {
     // Récupération de l'article
     articles.value = await pb.collection<ArticlesResponse>('articles').getOne(route.params.id);
+    const endTime = performance.now(); // Fin du chronométrage
+    const loadTime = endTime - startTime; // Temps de chargement réel en ms
+    const intervalTime = loadTime / totalCharacters;
+
+    // Synchroniser l'affichage du texte avec le temps de chargement
+    const timer = setInterval(() => {
+      loadedCharacters++;
+      visibleCharacters.value = loadedCharacters;
+      progress.value = Math.min((loadedCharacters / steps) * 100, 100);
+
+      if (loadedCharacters >= totalCharacters) {
+        clearInterval(timer);
+        setTimeout(() => {
+          isLoading.value = false;
+          isAnimationComplete.value = true;
+        }, animationDuration); // Attendre la fin de l'animation d'ouverture
+      }
+    }, intervalTime);
   } catch (error) {
     console.error(error);
-  } finally {
     isLoading.value = false;
   }
 
@@ -69,8 +97,22 @@ function getSlideCount(): number {
 }
 </script>
 
+
 <template>
-  <div class="relative bg-top-deg min-h-screen">
+  
+  <div v-if="isLoading" class="loader-container">
+      <div class="font-titre text-white text-xl md:text-4xl lg:text-4xl text-center">
+        <p class="lg:mt-0 md:mt-0 text-black text-center">{{ articles?.title }}</p>
+        <span v-for="(char, index) in loadingText" :key="index" :class="{ visible: index <= Math.floor(progress / (100 / loadingText.length)) }">
+          {{ char }}
+        </span>
+      </div>
+    </div>
+    <div v-else id="app">
+      <div :class="['top-container', { 'animate-top': !isLoading }]"></div>
+      <div :class="['bottom-container', { 'animate-bottom': !isLoading }]"></div>
+  
+      <div class="relative bg-top-deg min-h-screen">
     <Headers />
 
     <div
@@ -213,7 +255,7 @@ function getSlideCount(): number {
    
 <footers />
   
- 
+      </div>
 </div>
 </template>
 
@@ -230,36 +272,93 @@ function getSlideCount(): number {
   z-index: 1;
 }
 
-@keyframes spin-slow {
+.loader-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff 50%, #000000 50%);
+  z-index: 9999;
+}
+
+/* Texte du chargement */
+.font-titre span {
+  opacity: 0.2;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.font-titre span.visible {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Conteneurs pour la partie blanche et noire */
+.top-container {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #ffffff;
+  z-index: 10000;
+}
+
+.bottom-container {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #000000;
+  z-index: 10000;
+}
+
+
+
+.top-container {
+  top: 0;
+}
+
+.bottom-container {
+  top: 50%;
+}
+
+/* Animation de décalage */
+.animate-top {
+  animation: moveTopToTop 1.5s ease-out forwards;
+}
+
+.animate-bottom {
+  animation: moveBottomToBottom 1.5s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes moveBottomToBottom {
   0% {
-    transform: rotate(0deg);
+    transform: translateY(0);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translateY(100%);
   }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 2s linear infinite;
+@keyframes moveTopToTop {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
 }
 
-#html-spinner{
-  width:40px;
-  height:40px;
-  border:4px solid #fcd779;
-  border-top:4px solid white;
-  border-radius:50%;
-}
-.parent {
-  height: 2000px; /* Ajout d'une hauteur pour tester le défilement */
+.visible {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-.sticky-element {
-  position: sticky;
-  top: 0; /* L'élément va se fixer en haut de son parent */
-  background-color: lightblue;
-  padding: 10px;
-  z-index: 10; /* Assurer que l'élément reste au-dessus des autres */
+span {
+  opacity: 0;
 }
-
 </style>

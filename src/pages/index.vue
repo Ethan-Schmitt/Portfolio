@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative animate-gradient bg-gradient-to-r from-[#0c132d] via-[#102d4d] to-[#1a3b5a] min-h-screen">
+  <div class="relative animate-gradient min-h-screen">
     <Headers />
     <animationD class="hidden fixed mt-36 right-0 absolute lg:block lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20 animate-on-scroll" />
     <animationG class="hidden lg:block fixed mt-96 absolute lg:w-30 lg:h-48 md:w-20 md:h-24 w-16 h-20 animate-on-scroll" />

@@ -28,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="app" v-show="!isLoading" class="wrapper">
+  <div id="app" v-show="!isLoading">
     <!-- Animation d'ouverture lorsque le chargement est terminé -->
     <div :class="['top-container', { 'animate-top': !isLoading }]"></div>
     <div :class="['bottom-container', { 'animate-bottom': !isLoading }]"></div>

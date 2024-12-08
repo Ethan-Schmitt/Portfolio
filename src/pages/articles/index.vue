@@ -46,7 +46,7 @@ onMounted(fetchArticles);
 </script>
 
 <template>
-  <div class="relative bg-gradient-to-b from-top-deg to-bot-deg min-h-screen">
+  <div class="relative animate-gradient min-h-screen">
     <Headers />
 
     <div class="justify-center p-40">
@@ -143,7 +143,35 @@ onMounted(fetchArticles);
 </template>
 
 
+<style scoped>
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
+.animate-gradient {
+  background: linear-gradient(-45deg,#2b6ba2, #1a4061, #0c132d,#0c132d,  #153d67, #2b6ba2);
+  background-size: 500% 500%;
+  animation: gradient 20s linear infinite;
+}
+
+
+
+
+</style>
 
 
 
