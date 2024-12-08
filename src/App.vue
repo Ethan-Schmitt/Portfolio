@@ -2,48 +2,28 @@
 import { ref, onMounted } from 'vue';
 
 const isLoading = ref(true); // Chargement en cours
-const progress = ref(0); // Progression de l'affichage du texte
+const progress = ref(0); // Progression du texte
 
-// Durée totale pour l'écran de chargement et animations
-const totalTime = 5000; // Durée totale simulée
+// Durée du chargement
+const totalTime = 5000;
 const animationDuration = 1500; // Durée de l'animation d'ouverture
 
-// Texte à afficher avec animation
-const animatedText = 'Ethan Schmitt';
-
-// Fonction pour précharger les assets
-function preloadAssets() {
-  return Promise.all(
-    Array.from(document.images).map(
-      img =>
-        new Promise(resolve => {
-          img.onload = img.onerror = resolve;
-        })
-    )
-  );
-}
-
 onMounted(() => {
-  const interval = 100; // Intervalle pour l'animation du texte
-  const steps = totalTime / interval; // Nombre de pas pour l'animation
+  const interval = 100;
+  const steps = totalTime / interval;
   let currentStep = 0;
 
-  // Animation du texte pendant le chargement
   const timer = setInterval(() => {
     currentStep++;
-    progress.value = Math.min((currentStep / steps) * 100, 100); // Met à jour la progression
+    progress.value = Math.min((currentStep / steps) * 100, 100); // Progression
     if (currentStep >= steps) {
       clearInterval(timer);
+      // Après la fin du chargement, attendre un peu avant de finir l'animation d'ouverture
+      setTimeout(() => {
+        isLoading.value = false;
+      }, animationDuration); // Attendre la fin de l'animation d'ouverture
     }
   }, interval);
-
-  // Attendre le chargement complet des ressources
-  window.onload = async () => {
-    await preloadAssets(); // Optionnel : Vérifie que les images sont chargées
-    setTimeout(() => {
-      isLoading.value = false; // Retire le loader après l'animation
-    }, animationDuration);
-  };
 });
 </script>
 
@@ -59,19 +39,13 @@ onMounted(() => {
     </main>
   </div>
 
-  <!-- Écran de chargement -->
+  <!-- Chargement -->
   <div v-show="isLoading" class="loader-container">
-    <div class="font-titre text-center text-white text-xl md:text-4xl lg:text-4xl">
-      <p class="font-titre text-black">Bienvenue sur mon portfolio</p>
-      <div class="name-animation">
-        <span
-          v-for="(char, index) in animatedText"
-          :key="index"
-          :class="{ visible: index <= Math.floor(progress / (8 / animatedText.length)) }"
-        >
-          {{ char }}
-        </span>
-      </div>
+    <div class="font-titre lg:mt-0 md:mt-0 -mt-10 text-white text-xl md:text-4xl lg:text-4xl justify-center text-center">
+      <p class="font-titre lg:mt-0 md:mt-0 text-black text-center">Bienvenue sur mon portfolio</p>
+      <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 8) }" class="mt-10">
+        {{ char }}
+      </span>
     </div>
   </div>
 </template>
@@ -91,14 +65,12 @@ onMounted(() => {
 }
 
 /* Texte du chargement */
-.name-animation span {
+.font-titre span {
   opacity: 0.2;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  display: inline-block;
-  font-size: 2rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.name-animation span.visible {
+.font-titre span.visible {
   opacity: 1;
   transform: scale(1.2);
 }
@@ -121,6 +93,8 @@ onMounted(() => {
   background: #000000;
   z-index: 10000;
 }
+
+
 
 .top-container {
   top: 0;
@@ -158,3 +132,4 @@ onMounted(() => {
   }
 }
 </style>
+
