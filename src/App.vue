@@ -43,7 +43,7 @@ onMounted(() => {
   <div v-show="isLoading" class="loader-container">
     <div class="font-titre lg:mt-0 md:mt-0 -mt-10 text-white text-xl md:text-4xl lg:text-4xl justify-center text-center">
       <p class="font-titre lg:mt-0 md:mt-0 text-black text-center">Bienvenue sur mon portfolio</p>
-      <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 8) }" class="mt-10">sasasa
+      <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 8) }" class="mt-10">
         {{ char }}
       </span>
     </div>
