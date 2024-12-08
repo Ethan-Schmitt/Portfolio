@@ -2,28 +2,48 @@
 import { ref, onMounted } from 'vue';
 
 const isLoading = ref(true); // Chargement en cours
-const progress = ref(0); // Progression du texte
+const progress = ref(0); // Progression de l'affichage du texte
 
-// Durée du chargement
-const totalTime = 5000;
+// Durée totale pour l'écran de chargement et animations
+const totalTime = 5000; // Durée totale simulée
 const animationDuration = 1500; // Durée de l'animation d'ouverture
 
+// Texte à afficher avec animation
+const animatedText = 'Ethan Schmitt';
+
+// Fonction pour précharger les assets
+function preloadAssets() {
+  return Promise.all(
+    Array.from(document.images).map(
+      img =>
+        new Promise(resolve => {
+          img.onload = img.onerror = resolve;
+        })
+    )
+  );
+}
+
 onMounted(() => {
-  const interval = 100;
-  const steps = totalTime / interval;
+  const interval = 100; // Intervalle pour l'animation du texte
+  const steps = totalTime / interval; // Nombre de pas pour l'animation
   let currentStep = 0;
 
+  // Animation du texte pendant le chargement
   const timer = setInterval(() => {
     currentStep++;
-    progress.value = Math.min((currentStep / steps) * 100, 100); // Progression
+    progress.value = Math.min((currentStep / steps) * 100, 100); // Met à jour la progression
     if (currentStep >= steps) {
       clearInterval(timer);
-      // Après la fin du chargement, attendre un peu avant de finir l'animation d'ouverture
-      setTimeout(() => {
-        isLoading.value = false;
-      }, animationDuration); // Attendre la fin de l'animation d'ouverture
     }
   }, interval);
+
+  // Attendre le chargement complet des ressources
+  window.onload = async () => {
+    await preloadAssets(); // Optionnel : Vérifie que les images sont chargées
+    setTimeout(() => {
+      isLoading.value = false; // Retire le loader après l'animation
+    }, animationDuration);
+  };
 });
 </script>
 
@@ -39,21 +59,24 @@ onMounted(() => {
     </main>
   </div>
 
-  <!-- Chargement -->
+  <!-- Écran de chargement -->
   <div v-show="isLoading" class="loader-container">
-    <div class="font-titre lg:mt-0 md:mt-0 -mt-10 text-white text-xl md:text-4xl lg:text-4xl justify-center text-center ">
-      <p class="font-titre lg:mt-0 md:mt-0 text-black text-center">Bienvenue sur mon portfolio</p>
-      <span v-for="(char, index) in 'Ethan Schmitt'" :key="index" :class="{ visible: index <= Math.floor(progress / 7) }" class="mt-10">
-        {{ char }}
-      </span>
+    <div class="font-titre text-center text-white text-xl md:text-4xl lg:text-4xl">
+      <p class="font-titre text-black">Bienvenue sur mon portfolio</p>
+      <div class="name-animation">
+        <span
+          v-for="(char, index) in animatedText"
+          :key="index"
+          :class="{ visible: index <= Math.floor(progress / (8 / animatedText.length)) }"
+        >
+          {{ char }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Fond transparent pendant le chargement */
-
-
 /* Chargement */
 .loader-container {
   position: fixed;
@@ -68,47 +91,55 @@ onMounted(() => {
 }
 
 /* Texte du chargement */
-.font-titre span {
+.name-animation span {
   opacity: 0.2;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  font-size: 2rem;
 }
 
-.font-titre span.visible {
+.name-animation span.visible {
   opacity: 1;
   transform: scale(1.2);
 }
 
 /* Conteneurs pour la partie blanche et noire */
-.top-container, .bottom-container {
+.top-container {
   position: fixed;
   left: 0;
   width: 100%;
   height: 50%;
   background: #ffffff;
   z-index: 10000;
-  transition: transform 1.5s ease-out;
+}
+
+.bottom-container {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #000000;
+  z-index: 10000;
 }
 
 .top-container {
   top: 0;
-  transform: translateY(0);
 }
 
 .bottom-container {
   top: 50%;
-  transform: translateY(0);
 }
 
 /* Animation de décalage */
 .animate-top {
-  transform: translateY(-100%);
+  animation: moveTopToTop 1.5s ease-out forwards;
 }
 
 .animate-bottom {
-  transform: translateY(100%);
+  animation: moveBottomToBottom 1.5s ease-out forwards;
 }
 
-/* Animation de texte */
+/* Keyframes */
 @keyframes moveBottomToBottom {
   0% {
     transform: translateY(0);
