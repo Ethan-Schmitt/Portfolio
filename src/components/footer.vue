@@ -22,12 +22,6 @@
      class="inline-flex items-center justify-center   transition-transform transform hover:scale-110">
     <img src="@/components/icons/GitHub.png" alt="GitHub" class="h-12 w-12 md:h-16 md:w-16 ">
   </a>
-  
-  <!-- Behance -->
-  <a href="https://www.behance.net/ethanschmitt5/projects" target="_blank" rel="noopener noreferrer" 
-     class="inline-flex items-center justify-center  transition-transform transform hover:scale-110">
-    <behance class="h-10 w-10 md:h-12 md:w-12"/>
-  </a>
 </div>
 
         
@@ -53,6 +47,5 @@
   <script setup lang="ts">
   import animationG2 from "@/components/animations/animationG2.vue";
   import linkedIn from "@/components/icons/linkedIn.vue";
-  import behance from "@/components/icons/behance.vue";
   </script>
   

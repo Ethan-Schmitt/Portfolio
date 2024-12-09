@@ -61,12 +61,12 @@ const handleSubmit = async () => {
   <div class="relative animate-gradient">
     <headers />
     <div class="flex flex-col items-center justify-center min-h-screen">
-      <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll mt-56">
+      <h3 class="flex justify-center items-center font-titre md:text-5xl text-3xl mt-56 shine-text">
         Contact
       </h3>
-      <p class="text-center mb-16 mt-9 text-white text-base md:text-lg max-w-[350px] md:max-w-xl lg:max-w-6xl">
+      <p class="text-center mb-16 mt-9 text-white font-text text-base md:text-lg max-w-[350px] md:max-w-xl lg:max-w-6xl">
         Vous avez un projet, une question ou simplement envie de discuter ? <br />
-        N’hésitez pas à me contacter via le formulaire ci-dessous ou directement par e-mail. Je serai ravi de vous répondre dans les plus brefs délais !!
+        N’hésitez pas à me contacter via le formulaire ci-dessous, directement par e-mail ou encore via LinkedIn. Je serai ravi de vous répondre dans les plus brefs délais !!
       </p>
 
       <!-- Notification -->
@@ -78,7 +78,7 @@ const handleSubmit = async () => {
       </div>
 
       <!-- Formulaire -->
-      <form @submit.prevent="handleSubmit" class="space-y-4 w-full max-w-[350px] md:max-w-xl lg:max-w-5xl mb-16">
+      <form @submit.prevent="handleSubmit" class="space-y-4 w-full max-w-[350px] md:max-w-xl lg:max-w-5xl mb-9">
         <!-- Prénom et Nom -->
         <div class="flex gap-4">
           <input
@@ -123,12 +123,41 @@ const handleSubmit = async () => {
         <!-- Bouton -->
         <button
           type="submit"
-          class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-300"
+          class="bg-purple-900 text-white border border-purple-400 border-b-4 font-titre overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group
+          
+          w-full py-2 px-4 bg-purple-600 font-titre text-white"
         >
+        
           Envoyer
         </button>
       </form>
+      <a
+  class="group hover:bg-sky-600 relative bg-sky-800 rounded text-neutral-50 duration-500 font-bold flex justify-start gap-2 items-center p-2 pr-6"
+ href="https://www.linkedin.com/in/ethan-schmitt-a0ab1b299/" target="_blank" rel="noopener noreferrer" >
+  <svg
+    class="w-8 h-8 fill-neutral-50"
+    height="100"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 100 100"
+    width="100"
+    x="0"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0"
+  >
+    <path
+      d="M92.86,0H7.12A7.17,7.17,0,0,0,0,7.21V92.79A7.17,7.17,0,0,0,7.12,100H92.86A7.19,7.19,0,0,0,100,92.79V7.21A7.19,7.19,0,0,0,92.86,0ZM30.22,85.71H15.4V38H30.25V85.71ZM22.81,31.47a8.59,8.59,0,1,1,8.6-8.59A8.6,8.6,0,0,1,22.81,31.47Zm63,54.24H71V62.5c0-5.54-.11-12.66-7.7-12.66s-8.91,6-8.91,12.26V85.71H39.53V38H53.75v6.52H54c2-3.75,6.83-7.7,14-7.7,15,0,17.79,9.89,17.79,22.74Z"
+    ></path>
+  </svg>
+  <span class="border-l-2 px-1">Ethan Schmitt</span>
+  <div
+    class="group-hover:opacity-100 opacity-0 top-16 absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-500 bg-sky-600 rounded-lg shadow-sm before:w-3 before:h-3 before:rotate-45 before:-top-1 before:left-20 before:bg-sky-600 before:absolute"
+  >
+   Voir mon profil !
+  </div>
+</a>
+    <img src="../../components/animations/Anima.gif" alt="GIF animé" class=" justify-center items-center mb-20 lg:w-24 lg:h-24 md:w-16 md:h-16 w-[65px] h-[61px] mt-0 md:mt-20 lg:mt-20 ">
     </div>
+    
     <footers />
   </div>
 </template>
@@ -161,4 +190,21 @@ const handleSubmit = async () => {
   animation: gradient 20s linear infinite;
 }
 
+.shine-text {
+  background: linear-gradient(90deg, rgb(255, 255, 255, 0.9), #ffd700, rgba(255, 255, 255, 0.901));
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: colorShine 3s linear infinite;
+}
+
+@keyframes colorShine {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
 </style>
