@@ -14,11 +14,44 @@ const form = ref({
 });
 
 // Gérer la soumission du formulaire
-const handleSubmit = () => {
-  console.log("Form data:", form.value);
-  alert("Votre message a été envoyé !");
+const handleSubmit = async () => {
+  try {
+    // Envoyer les données à Formspree
+    const response = await fetch("https://formspree.io/f/mrbgvkjw", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: form.value.firstName,
+        lastName: form.value.lastName,
+        email: form.value.email,
+        subject: form.value.subject,
+        message: form.value.message,
+      }),
+    });
+    if (response.ok) {
+      console.log("Message envoyé avec succès !");
+      alert("Votre message a été envoyé !");
+      // Réinitialiser le formulaire
+      form.value = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      };
+    } else {
+      console.error("Erreur lors de l'envoi du message.");
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'envoi :", error);
+    alert("Une erreur est survenue. Veuillez réessayer.");
+  }
 };
 </script>
+
 
 <template>
   <div class="relative animate-gradient">
@@ -30,7 +63,7 @@ const handleSubmit = () => {
         N’hésitez pas à me contacter via le formulaire ci-dessous ou directement par e-mail. Je serai ravi de vous répondre dans les plus brefs délais !!
       </p>
       <!-- Formulaire -->
-      <form @submit.prevent="handleSubmit" class="space-y-4 w-full max-w-[350px] md:max-w-xl lg:max-w-5xl   mb-16">
+      <form @submit.prevent="handleSubmit" class="space-y-4 w-full max-w-[350px] md:max-w-xl lg:max-w-5xl mb-16">
         <!-- Prénom et Nom -->
         <div class="flex gap-4">
           <input
