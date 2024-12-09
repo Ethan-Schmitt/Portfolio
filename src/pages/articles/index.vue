@@ -12,7 +12,7 @@ const router = useRouter();
 const articles = ref<ArticlesResponse[] | null>(null);
 const selectedCategory = ref('');
 const isLoading = ref(true);
-const activeCardId = ref<string | null>(null); // Gère l'état de la carte active
+
 
 // Récupérer les articles
 const fetchArticles = async () => {
