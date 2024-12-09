@@ -4,7 +4,6 @@ import headers from "../../components/HeaderPage.vue";
 import footers from "../../components/footer.vue";
 import { ref } from "vue";
 
-// Définir les données du formulaire
 const form = ref({
   firstName: "",
   lastName: "",
@@ -13,10 +12,10 @@ const form = ref({
   message: "",
 });
 
-// Gérer la soumission du formulaire
+const notification = ref<{ message: string; type: string } | null>(null);
+
 const handleSubmit = async () => {
   try {
-    // Envoyer les données à Formspree
     const response = await fetch("https://formspree.io/f/mrbgvkjw", {
       method: "POST",
       headers: {
@@ -30,10 +29,12 @@ const handleSubmit = async () => {
         message: form.value.message,
       }),
     });
+
     if (response.ok) {
-      console.log("Message envoyé avec succès !");
-      alert("Votre message a été envoyé !");
-      // Réinitialiser le formulaire
+      notification.value = {
+        message: "Votre message a été envoyé avec succès !",
+        type: "success",
+      };
       form.value = {
         firstName: "",
         lastName: "",
@@ -42,26 +43,40 @@ const handleSubmit = async () => {
         message: "",
       };
     } else {
-      console.error("Erreur lors de l'envoi du message.");
-      alert("Une erreur est survenue. Veuillez réessayer.");
+      notification.value = {
+        message: "Une erreur est survenue. Veuillez réessayer.",
+        type: "error",
+      };
     }
   } catch (error) {
-    console.error("Erreur lors de l'envoi :", error);
-    alert("Une erreur est survenue. Veuillez réessayer.");
+    notification.value = {
+      message: "Une erreur est survenue. Veuillez réessayer.",
+      type: "error",
+    };
   }
 };
 </script>
-
 
 <template>
   <div class="relative animate-gradient">
     <headers />
     <div class="flex flex-col items-center justify-center min-h-screen">
-      <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll mt-56 " >Contact</h3>
+      <h3 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl animate-on-scroll mt-56">
+        Contact
+      </h3>
       <p class="text-center mb-16 mt-9 text-white text-base md:text-lg max-w-[350px] md:max-w-xl lg:max-w-6xl">
         Vous avez un projet, une question ou simplement envie de discuter ? <br />
         N’hésitez pas à me contacter via le formulaire ci-dessous ou directement par e-mail. Je serai ravi de vous répondre dans les plus brefs délais !!
       </p>
+
+      <!-- Notification -->
+      <div v-if="notification" :class="{
+        'bg-green-500 text-white': notification.type === 'success',
+        'bg-red-500 text-white': notification.type === 'error',
+      }" class="w-full max-w-md text-center p-4 mb-6 rounded-md shadow-lg transition-opacity">
+        <p>{{ notification.message }}</p>
+      </div>
+
       <!-- Formulaire -->
       <form @submit.prevent="handleSubmit" class="space-y-4 w-full max-w-[350px] md:max-w-xl lg:max-w-5xl mb-16">
         <!-- Prénom et Nom -->
