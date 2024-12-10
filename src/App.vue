@@ -5,7 +5,7 @@ const isLoading = ref(true); // Chargement en cours
 const progress = ref(0); // Progression du texte
 
 // Durée du chargement
-const totalTime = 5000;
+const totalTime = 2000;
 const animationDuration = 1500; // Durée de l'animation d'ouverture
 
 onMounted(() => {
