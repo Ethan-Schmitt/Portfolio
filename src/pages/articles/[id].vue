@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import { pb } from '@/backend';
 import { useRoute } from 'vue-router';
 import type { ArticlesResponse } from '@/pocketbase-types';
@@ -22,8 +22,8 @@ const isSliderVisible = ref(false);
 
 const animationDuration = 1500;
 
-onMounted(async () => {
-  const startTime = performance.now(); // Chronométrage pour le calcul du temps de chargement // Intervalle pour l'affichage progressif des caractères
+const loadArticle = async () => {
+  const startTime = performance.now(); // Chronométrage pour le calcul du temps de chargement
   const totalCharacters = loadingText.length; // Nombre total de caractères à afficher
   const steps = totalCharacters;
 
@@ -31,7 +31,8 @@ onMounted(async () => {
 
   try {
     // Récupération de l'article
-    articles.value = await pb.collection<ArticlesResponse>('articles').getOne(route.params.id);
+    const articleId = route.params.id;
+    articles.value = await pb.collection<ArticlesResponse>('articles').getOne(articleId);
     const endTime = performance.now(); // Fin du chronométrage
     const loadTime = endTime - startTime; // Temps de chargement réel en ms
     const intervalTime = loadTime / totalCharacters;
@@ -54,6 +55,16 @@ onMounted(async () => {
     console.error(error);
     isLoading.value = false;
   }
+};
+
+onMounted(() => {
+  loadArticle();
+
+  // Ajouter un écouteur pour la mise à jour de l'ID dans l'URL
+  watch(() => route.params.id, () => {
+    isLoading.value = true;
+    loadArticle();
+  });
 
   // Ajout de l'écouteur de scroll
   window.addEventListener('scroll', handleScroll);
@@ -93,10 +104,10 @@ function getSlideCount(): number {
   if (articles.value.titre5 || articles.value.content5) count++;
   if (articles.value.image6) count++;
   if (articles.value.titre6 || articles.value.content6) count++;
-  // Ajoutez ici les autres slides si nécessaire
   return count;
 }
 </script>
+
 
 
 <template>

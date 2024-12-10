@@ -53,6 +53,20 @@ onMounted(() => {
     </section>
     <h4 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-12 animate-on-scroll">Mes derniers projets</h4>
     <cardsaccueil class="animate-on-scroll" />
+    <router-link to="/articles">
+    <div class="flex justify-center items-center mt-16 animate-on-scroll">
+      <button
+      class="relative justify-center items-center px-8 py-2 rounded-md bg-top-deg isolation-auto z-10 border-1 border-bot-deg
+      before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white 
+      before:-right-full before:hover:right-0 before:rounded-full before:bg-bot-deg before:-z-10 before:aspect-square 
+      before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center px-4 py-3 
+      text-m font-titre text-white bg-top-deg border border-black rounded-lg shadow-sm gap-x-2 hover:bg-top-deg 
+      disabled:opacity-50 disabled:pointer-events-none"
+      >
+      En savoir + 
+      </button>
+    </div>
+    </router-link>
     <h5 class="flex justify-center items-center text-white font-titre md:text-5xl text-3xl md:mt-20 mt-20 animate-on-scroll">Mes compétences</h5>
     <carroussel class="mt-12 mb-32 animate-on-scroll"/>
     <footers />

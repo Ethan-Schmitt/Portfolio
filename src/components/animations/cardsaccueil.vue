@@ -5,7 +5,7 @@
     <div
       v-for="article in articles"
       :key="article.id"
-      @click="handleCardClick(article.id)"
+      @click="handleCardClick(article.id)"  
       class="relative h-72 rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform transform card"
     >
       <!-- Animation de bordure -->
@@ -61,12 +61,13 @@ const fetchArticles = async () => {
 
 // Gestion du clic sur la carte
 const handleCardClick = (articleId: string) => {
-  router.push(`/articles/${articleId}`);
+  router.push(`/articles/${articleId}`);  // Utilisation de l'ID dans l'URL
 };
 
 watch(selectedCategory, fetchArticles);
 onMounted(fetchArticles);
 </script>
+
 
 <style scoped>
 /* Apparence de la carte */
