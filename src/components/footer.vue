@@ -31,7 +31,7 @@
             class=" text-white underline hover:text-or"
             @click="downloadPdf"
           >
-            Télécharger le PDF
+            Télécharger le CV
           </button>
         </div>
 
