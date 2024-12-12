@@ -26,16 +26,15 @@
 
         
         <div class="md:w-1/4 w-1/2 h-1 bg-white justify-center mx- mb-10"></div>
-        <div class="text-center">
-          <a
-            href="/src/components/cv/CV-Ethan-Schmitt.pdf"
-            download
-            class="text-white underline hover:text-or"
+        <div class="mt-4">
+          <button 
+            class=" text-white underline hover:text-or"
+            @click="downloadPdf"
           >
-            Télécharger mon CV
-          </a>
+            Télécharger le PDF
+          </button>
         </div>
-  
+
         <!-- Copyright -->
         <div class="text-sm">
           ©2024 Ethan Schmitt
@@ -47,5 +46,12 @@
   <script setup lang="ts">
   import animationG2 from "@/components/animations/animationG2.vue";
   import linkedIn from "@/components/icons/linkedIn.vue";
+  // Fonction pour télécharger le PDF
+  const downloadPdf = () => {
+    const pdfPath = "/cv/CV-Ethan-Schmitt.pdf"; // Chemin vers le fichier dans public
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.download = 'CV-Ethan-Schmitt.pdf';
+    link.click();
+  };
   </script>
-  
