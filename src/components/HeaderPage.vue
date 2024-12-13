@@ -8,7 +8,7 @@ function closeMenu() {
   activeMenu.value = false
 }
 
-// Surveiller les changements de activeMenu et ajouter/supprimer la classe overflow-hidden
+
 watch(activeMenu, (newVal) => {
   if (newVal) {
     document.body.classList.add('overflow-hidden')

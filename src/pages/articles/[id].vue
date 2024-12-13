@@ -236,10 +236,17 @@ function getSlideCount(): number {
 <div v-if="articles.titre6 || articles.content6" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#102d4d] to-[#0c132d] text-white px-8 ">
   <h6 class="text-4xl font-titre mb-4" v-html="articles.titre6"></h6>
   <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[300px]" v-html="articles.content6"></div>
+  <a 
+    v-if="articles.URL" 
+    :href="articles.URL" 
+    target="_blank" 
+    class="mt-12 bg-purple-900 text-white border border-purple-400 border-b-4 font-titre overflow-hidden relative px-5 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
+    Voir le projet
+  </a>
 </div>
 <div v-else class="flex justify-center">
-      <p class="text-2xl text-center text-white"></p>
-    </div>
+  <p class="text-2xl text-center text-white"></p>
+</div>
 
 <!-- Progression visuelle -->
 <div

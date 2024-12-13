@@ -3,7 +3,7 @@
 import { pb } from "@/backend";
 import { type RecordModel } from "pocketbase";
 const props = defineProps<{
-  /** L'enregistrement 'complet' (id et collectionId ou collectionName) de PocketBase */
+ 
   record: {
     id: string;
   } & (

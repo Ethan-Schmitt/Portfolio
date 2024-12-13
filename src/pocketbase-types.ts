@@ -41,6 +41,7 @@ export enum ArticlesCategoryOptions {
 	"design" = "design",
 }
 export type ArticlesRecord = {
+	URL?: string
 	category?: ArticlesCategoryOptions
 	content2?: HTMLString
 	content3?: HTMLString
