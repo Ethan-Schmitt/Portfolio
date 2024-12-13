@@ -55,6 +55,7 @@ export type ArticlesRecord = {
 	image5?: string
 	image6?: string
 	image?: string
+	note?: string
 	title?: string
 	titre2?: string
 	titre3?: string

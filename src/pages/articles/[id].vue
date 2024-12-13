@@ -155,9 +155,9 @@ function getSlideCount(): number {
     <!-- Contenu principal -->
     <div v-if="articles">
 <!-- Slide 1 - Texte -->
-<div v-if="articles.title || articles.content" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c132d] to-[#102d4d] text-white px-8">
-  <h1 class="text-5xl font-titre mb-4" v-html="articles.title"></h1>
-  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[300px]" v-html="articles.content"></div>
+<div v-if="articles.note || articles.content" class="sticky top-0 h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c132d] to-[#102d4d] text-white px-8">
+  <h1 class="md:text-lg text-base font-texte mb-9 italic" v-html="articles.note"></h1>
+  <div class="text-base md:text-lg font-text mx-0 md:mx-28 lg:mx-[300px] " v-html="articles.content"></div>
 </div>
 
 <!-- Slide 2 - Image -->
