@@ -1,6 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import {onMounted } from 'vue';
+import { onMounted } from 'vue';
+import { useHead } from '@vueuse/head';  // Import de useHead pour gérer les métadonnées
+
+// Import des composants
 import Headers from '@/components/HeaderPage.vue';
 import animationD from '@/components/animations/animationD.vue';
 import animationG from '@/components/animations/animationG.vue';
@@ -8,6 +11,18 @@ import triforce from '@/components/animations/triforces.vue';
 import footers from '@/components/footer.vue';
 import carroussel from '@/components/icons/carroussel/carroussel.vue';
 import cardsaccueil from '@/components/animations/cardsaccueil.vue';
+
+// Définir les métadonnées de la page (titre et description)
+useHead({
+  title: 'Ethan Schmitt | Portfolio ',  // Titre de la page
+  titleTemplate: null,  
+  meta: [
+    {
+      name: 'description',
+      content:' Bienvenue ! Je m’appelle Ethan, j’ai 20 ans et je suis étudiant en deuxième année de BUT Métiers du Multimédia et de l’Internet (MMI)'
+    }
+  ]
+});
 
 // Observer visibility for scroll-triggered animations
 const observeVisibility = (entry: IntersectionObserverEntry, observer: IntersectionObserver) => {
@@ -27,6 +42,7 @@ onMounted(() => {
   elements.forEach((element) => observer.observe(element));
 });
 </script>
+
 
 <template>
   <div class="relative animate-gradient min-h-screen">

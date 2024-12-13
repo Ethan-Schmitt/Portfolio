@@ -8,6 +8,20 @@ const progress = ref(0); // Progression du texte
 const totalTime = 2000;
 const animationDuration = 1500; // Durée de l'animation d'ouverture
 
+// Configuration metaInfo
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Ethan Schmitt | Portfolio',
+  titleTemplate: null,
+  meta: [
+    {
+      name: 'description',
+      content: 'Portfolio d\'Ethan Schmitt, étudiant en MMI'
+    }
+  ]
+});
+
 onMounted(() => {
   const interval = 100;
   const steps = totalTime / interval;
