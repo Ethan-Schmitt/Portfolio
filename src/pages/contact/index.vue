@@ -3,6 +3,7 @@
 import headers from "../../components/HeaderPage.vue";
 import footers from "../../components/footer.vue";
 import { ref } from "vue";
+import { useHead } from "@vueuse/head";
 
 const form = ref({
   firstName: "",
@@ -10,6 +11,17 @@ const form = ref({
   email: "",
   subject: "",
   message: "",
+});
+
+useHead({
+  title: 'Ethan Schmitt | Portfolio ',  // Titre de la page
+  titleTemplate: 'A propos',  
+  meta: [
+    {
+      name: 'description',
+      content:' Vous avez un projet, une question ou simplement envie de discuter ? N’hésitez pas à me contacter !'
+    }
+  ]
 });
 
 const notification = ref<{ message: string; type: string } | null>(null);

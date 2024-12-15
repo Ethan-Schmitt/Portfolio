@@ -114,7 +114,7 @@ function getSlideCount(): number {
   
   <div v-if="isLoading" class="loader-container">
       <div class="font-titre text-white text-xl md:text-4xl lg:text-4xl text-center">
-        <p class="lg:mt-0 md:mt-0 text-black text-center">{{ articles?.title }}</p>
+        <p class="lg:mb-0 md:mb-9 text-black text-center mb-9">{{ articles?.title }}</p>
         <span v-for="(char, index) in loadingText" :key="index" :class="{ visible: index <= Math.floor(progress / (100 / loadingText.length)) }">
           {{ char }}
         </span>
