@@ -24,14 +24,34 @@ watch(activeMenu, (newVal) => {
       <img src="../components/icons/logoES.png" alt="Image" class="h-10 sm:h-14 md:h-16 lg:h-16 xl:h-20 ml-0 lg:ml-8" />
     </RouterLink>
     <button
-  class="relative z-10 flex h-3 w-7 flex-col justify-between lg:hidden *:block *:ease *:h-[4px] *:w-full *:transform *:rounded-full *:bg-white *:transition *:duration-300"
+  class="relative z-30 flex h-[35px] w-12 items-center justify-center lg:hidden"
   @click="activeMenu = !activeMenu"
 >
-      <span :class="{ 'translate-y-[5px] rotate-45': activeMenu }"></span>
-      <span :class="{ '-translate-y-[5px] -rotate-45': activeMenu }"></span>
-    </button>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="white"
+    class="h-10 w-10 transition-transform duration-300"
+    :class="{ 'hidden': activeMenu }"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="white"
+    class="h-10 w-10 transition-transform duration-300"
+    :class="{ 'hidden': !activeMenu }"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
     <nav
-      class="invisible opacity-0 flex-1 px-6 py-12 flex justify-center items-center mt-20 flex-col fixed z-10 inset-0 bg-mid-deg  lg:mt-0 lg:flex-row lg:static lg:bg-transparent lg:py-6 lg:visible lg:opacity-100"
+      class="invisible opacity-0 flex-1 px-6 py-12 flex justify-center items-center mt-0 flex-col fixed z-10 inset-0 bg-top-deg lg:mt-0 lg:flex-row lg:static lg:bg-transparent lg:py-6 lg:visible lg:opacity-100"
       :class="{ '!visible !opacity-100': activeMenu }"
     >
       <ul class="flex flex-col gap-20 lg:flex-row mr-40">
